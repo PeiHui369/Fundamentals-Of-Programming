@@ -1,0 +1,12 @@
+import java.io.*;
+public class L1Q2{
+    public static void main(String[] args) {
+       System.out.println("Full name: Lee Pei Hui");
+       System.out.println("Matric number: 22004781/1");
+       System.out.println("Address: No. 14, Jalan Dato Yusuf Shahbudin 1, Taman Sentosa, 41200 Klang, Selangor, Malaysia.");
+       System.out.println("Email: leepeihui.lph@gmail.com");
+       System.out.println("Contact: 016-267 0910");
+    }
+    
+    //select > clean & build > jar file created in dist folder (exchange with friend can execute)
+}
