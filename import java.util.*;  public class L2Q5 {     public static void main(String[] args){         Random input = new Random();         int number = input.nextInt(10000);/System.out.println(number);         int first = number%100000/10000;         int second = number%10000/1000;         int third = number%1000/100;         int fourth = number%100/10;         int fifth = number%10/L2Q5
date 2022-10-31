@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class L2Q5 {
+    public static void main(String[] args){
+        Random input = new Random();
+        int number = input.nextInt(10000);
+        //System.out.println(number);
+        int first = number%100000/10000;
+        int second = number%10000/1000;
+        int third = number%1000/100;
+        int fourth = number%100/10;
+        int fifth = number%10/1;
+        int sum = first + second + third + fourth + fifth;
+        System.out.println(sum);
+    }
+}
