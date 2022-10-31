@@ -1,0 +1,23 @@
+import java.util.*;
+
+public class L2Q4 {
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the number of seconds: ");
+        double seconds = input.nextDouble();
+        double hour = seconds/60/60;
+        double hours = (int)seconds/60/60;
+        //System.out.println(hour);
+        //System.out.println(hours);
+        double minute = (hour - hours)*60;
+        double minutes = (int)minute;
+        //System.out.println(minute);
+        //System.out.println(minutes);
+        double second = (minute - minutes)*60;
+        double sec = (int)second;
+        //System.out.println(second);
+        //System.out.println(sec);
+        System.out.println(seconds + " seconds is " + hours + " hours, " + minutes + " minutes and " + sec + " seconds");
+    }
+
+}
