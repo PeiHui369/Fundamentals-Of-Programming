@@ -1,0 +1,16 @@
+import java.util.*;
+public class L2Q2 {
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter the price of the car: ");
+                Double P = input.nextDouble();
+        System.out.println("Enter the down payment: ");
+        Double D = input.nextDouble();
+        System.out.println("Enter the interest rate in % ");
+        Double R = input.nextDouble();
+        System.out.println("Enter the loan duration in year ");
+        Double Y = input.nextDouble();
+        Double M = (P-D) * (1 + R*Y/100)/(Y*12);
+        System.out.printf("Your monthly payment for car loan is: %.2f", M);
+    }
+}
