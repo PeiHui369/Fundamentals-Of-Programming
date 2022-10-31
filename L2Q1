@@ -1,0 +1,15 @@
+import java.io.*;
+import java.util.*;
+
+
+public class L2Q1{
+    public static void main(String[] args) {
+
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter temperature in Fahrenheit: ");
+        Double Fahrenheit = input.nextDouble();
+        Double Celsius = (Fahrenheit - 32)/1.8;
+        System.out.printf("Temperature in degree Celsius is = %.2f",Celsius);
+    }
+    //select > clean & build > jar file created in dist folder (exchange with friend can execute)
+}
