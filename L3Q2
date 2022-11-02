@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class T3Q1 {
+public class L3Q2 {
     public static void main(String[] args) {
     Random input = new Random();
     int num01 = input.nextInt(6);
