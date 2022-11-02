@@ -1,0 +1,16 @@
+import java.util.*;
+
+public class T3Q1 {
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter an integer: ");
+        int integer = input.nextInt();
+
+        if(integer % 2 ==0){
+            System.out.println("The input integer is an even number.");
+        }else{
+            System.out.println("The input integer is an odd number.");
+        }
+
+    }
+}
