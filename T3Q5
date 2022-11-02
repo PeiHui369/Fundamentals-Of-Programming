@@ -1,0 +1,23 @@
+  //5. Write the java statements that determine whether the Leap year. A Leap year is divisible by 4 but not by 100. However, a Leap year is also divisible by 400.
+
+import java.util.*;
+
+public class T3Q1 {
+    public static void main(String[] args){;
+      
+        Scanner input = new Scanner(System.in);
+        System.out.println("Test if your favourite year is a leap year: ");
+        int year = input.nextInt();
+
+        if(year % 4 == 0 || year % 400 ==0){
+            System.out.println("AHA Year "+year+" is a leap year!");
+        }else{
+            System.out.println("Not a leap year.");
+        }
+    }
+
+}
+
+
+
+
