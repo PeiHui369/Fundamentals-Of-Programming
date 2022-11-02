@@ -1,3 +1,8 @@
+/*Create a new project named L1Q2 (use Java with Ant). 
+Modify the main class to l1q2.MyProfile. You need to write a program to display your personal profile such as full name, matric number, address, email, contact and etc. 
+After that, select the project and then Clean and Build. 
+A jar file will be created in dist folder. 
+(Exchange the jar file with your friend and you can execute the jar file in your PC.) */
 
 import java.io.*;
     public class L1Q2{
