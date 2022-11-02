@@ -1,0 +1,44 @@
+Display 2 strings in *alphabetical order* ignoring their case:
+
+String a = "..."; 
+String b = "...";  
+
+int compare = a.compareToIgnoreCase(b);  
+
+if (compare < 0) {  
+    //a is smaller
+}
+else if (compare > 0) {
+    //a is larger 
+}
+else {  
+    //a is equal to b
+} 
+
+<T3Q1.java>
+import java.util.*;
+
+import static java.lang.Character.isUpperCase;
+
+public class T3Q1 {
+    public static void main(String[] args){;
+        String s1 = "Project";
+        String s2 = "Sunset";
+        int compare = s1.compareToIgnoreCase(s2);
+
+        if (compare < 0){ //s1 is smaller, should be infront
+            System.out.println("The first sentence is " + s1);
+            System.out.println("The second sentence is " +s2);
+        }else if (compare > 0){ //a is larger, should be after
+            System.out.println("The first sentence is " + s2);
+            System.out.println("The second sentence is " +s1);
+        }else{ //a is equal to be, both have the same alphabetically order
+            System.out.println("The alphabetically order doesn't matter.");
+        }
+    }
+}
+
+>>
+The first sentence is Project
+The second sentence is Sunset
+
