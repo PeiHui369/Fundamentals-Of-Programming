@@ -1,0 +1,19 @@
+import java.util.*;
+
+public class L3Q3 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Please enter the sales volume in integer: ");
+        double sales = input.nextDouble();
+
+        if (sales <= 100) {
+            System.out.println("The commission is " + (5.0 / 100 * sales));
+        } else if (sales > 100 && sales <= 500) {
+            System.out.println("The commission is " + (7.5 / 100 * sales));
+        } else if (sales > 500 && sales <= 1000) {
+            System.out.println("The commission is " + (10 / 100 * sales));
+        } else {
+            System.out.println("The commission is " + (12.5 / 100 * sales));
+        }
+    }
+}
