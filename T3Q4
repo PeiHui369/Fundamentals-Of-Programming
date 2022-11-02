@@ -1,0 +1,26 @@
+//4. Write the java statements that used the if statement to find the biggest number among three given integers.
+
+import java.util.*;
+
+public class T3Q1 {
+    public static void main(String[] args){;
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the first integer: ");
+        int num01 = scanner.nextInt();
+        System.out.println("Enter the second integer: ");
+        int num02 = scanner.nextInt();
+        System.out.println("Enter the third integer: ");
+        int num03 = scanner.nextInt();
+
+        if(num01 > num02 && num01 > num03){
+            System.out.println("The biggest number among three given integers is" + num01);
+        }else if(num02 > num01 && num02 > num03){
+            System.out.println("The biggest number among three given integers is" + num02);
+        }else{
+            System.out.println("The biggest number among three given integers is " + num03);
+        }
+
+        }
+
+}
