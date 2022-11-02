@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class L3Q6 {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter the radius of a circle: ");
+        double radius = input.nextDouble();
+        System.out.print("Enter the x-coordinate of a point: ");
+        double x = input.nextDouble();
+        System.out.print("Enter the y-coordinate of a point: ");
+        double y = input.nextDouble();
+
+        double h = x*x;
+        double v = y*y;
+        double l = Math.sqrt(h + v);
+
+        if(l > radius){
+            System.out.println("The point is outside the circle.");
+        }else{
+            System.out.println("The point is inside the circle.");
+        }
+        input.close();
+    }
+}
