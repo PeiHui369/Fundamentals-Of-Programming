@@ -1,0 +1,29 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class L4 {
+    public static void main(String[] args){
+        ArrayList<Integer> arr = new ArrayList<>();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter an Integer: ");
+        int integer = input.nextInt();
+
+        int f=1;
+        while (f <= integer) {
+            if (integer % f == 0) {
+                System.out.println(f);
+                arr.add(f);
+                f++;
+            }
+        }
+    }
+}
+
+>>
+Enter an Integer: 
+24
+1
+2
+3
+4
+
