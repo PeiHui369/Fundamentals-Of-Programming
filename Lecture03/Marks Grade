@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args) {
+        System.out.println("Enter your marks: ");
+        Scanner input = new Scanner(System.in);
+        double marks;
+        marks = input.nextDouble();
+        if(marks<0 || marks>100){
+        System.out.println("invalid");
+        }else if(marks>=80){
+            System.out.println("grade = 'A'");
+        }else if(marks>=75) {
+            System.out.println("grade = 'A-'");
+        }else if(marks>=70) {
+            System.out.println("grade = 'B+'");
+        }else if(marks>=65) {
+            System.out.println("grade = 'B' ");
+        }else{
+            System.out.println("grade = 'F' ");
+        }
+    }
+}
+
