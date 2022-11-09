@@ -21,3 +21,18 @@ public class L2Q4 {
     }
 
 }
+
+<SOLUTION>
+import java.util.Scanner;
+public class Q4a{
+int hr, min, sec, inputSec;
+Scanner sc= new Scanner(System.in);
+System.out.print("Enter the seconds: ");
+inputSec = sc.nextInt;
+hr = inputSec/3600;
+min = (inputSec%3600)/60;
+sec = inputSec%60;
+System.out.println(inputSec + " seconds is " + hr +" hours, " +min+ " mins");
+
+sc.close();
+}
