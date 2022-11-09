@@ -14,3 +14,21 @@ public class L2Q5 {
         System.out.println(sum);
     }
 }
+
+<SOLUTION>
+import java.util.Random;
+public class Q5a{
+    public static void main(String[] args){
+        int num, digit;
+        int sum = 0;
+        Random random = new Random();
+        num = random.nextInt(bound:10001); //to include for 10000
+        System.out.println(num);
+        while(num>0){
+            digit = num%10; //this gets the last digit
+            sum = sum + digit;
+            num = num/10; //this removes the last digit
+        }
+        System.out.println(sum);
+    }
+            
