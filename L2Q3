@@ -3,13 +3,23 @@ import java.util.*;
 public class L2Q3 {
     public static void main(String[] args){
         Random input = new Random();
+        
+        /*
         int number01 = input.nextInt((50-10+1)+10);
         int number02 = input.nextInt((50-10+1)+10);
         int number03 = input.nextInt((50-10+1)+10);
         System.out.println("The first number is " + number01);
         System.out.println("The second number is " + number02);
         System.out.println("The third number is " + number03);
-        int sum = number01 + number02 + number03;
+        int sum = number01 + number02 + number03; 
+        */
+        
+        for(int i=0; i<3; i++){#
+            int x = random.nextInt(bound:40)+10;#
+             System.out.println(x);#
+    
+            sum = sum + x;#}
+          
         System.out.println("The sum is= " + sum);
         double average = sum/3;
         System.out.printf("The average is= %.2f", average);
