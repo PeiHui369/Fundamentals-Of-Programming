@@ -1,17 +1,27 @@
-import java.util.*;
+import java.util.Scanner;
 
-public class L2Q6 {
-    public static void main(String[] args){
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter the amount of water in gram: ");
-        double M = input.nextDouble();
-        System.out.println("Enter the initial temperature in Fahrenheit: ");
-        double intTemp = input.nextDouble();
-        System.out.println("Enter the final temperature in Fahrenheit: ");
-        double finTemp = input.nextDouble();
-        double inttTemp = (intTemp*9/5) +32;
-        double finnTemp = (finTemp*9/5) +32;
-        double Q = M * (finnTemp - inttTemp) * 4184;
-        System.out.println("The energy needed is " + Q);
-    }
-}
+public class Main{
+    public static void main(String[] args) {
+                Scanner input = new Scanner(System.in);
+                System.out.println("Enter the amount of water in gram: ");
+                double M = input.nextDouble();
+                System.out.println("Enter the initial temperature in Fahrenheit: ");
+                double intTemp = input.nextDouble();
+                System.out.println("Enter the final temperature in Fahrenheit: ");
+                double finTemp = input.nextDouble();
+                double inttTemp = (intTemp-32) *5/9;
+                double finnTemp = (finTemp-32) *5/9;
+                double Q = M * (finnTemp - inttTemp) * 4184;
+                System.out.println("The energy needed is " + Q);
+            }
+        }
+
+
+>>
+Enter the amount of water in gram: 
+55500
+Enter the initial temperature in Fahrenheit: 
+38.3
+Enter the final temperature in Fahrenheit: 
+50.9
+The energy needed is 1.6254840000000005E9
