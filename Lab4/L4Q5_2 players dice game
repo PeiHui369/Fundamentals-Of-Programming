@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner keyboard = new Scanner(System.in);
+        int p1Score = 0, p2Score = 0, roll = 0;
+        boolean isP1Turn = true;
+
+        while(Math.max(p1Score,p2Score)<=100){
+            roll = (int)(Math.random()*(6-1)+1);
+
+            if(isP1Turn){ p1Score += roll; } else {p2Score += roll;}
+
+            System.out.printf("Player 1 Score: %d, Player 2 Score: %d\n", p1Score, p2Score);
+
+            isP1Turn = !isP1Turn; //To take turns
+        }
+        System.out.printf("Player %d won!", p1Score > p2Score ? 1 : 2);
+
+        keyboard.close();
+    }
+
+}
+
