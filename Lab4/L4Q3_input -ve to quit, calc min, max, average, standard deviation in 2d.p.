@@ -1,0 +1,35 @@
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+                //Declares variable
+                int input=0, min=999, max=0, X=0, Xsqrd=0, N=0;
+
+                //Get input
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Enter a score [negative score to quit]: ");
+                input = scanner.nextInt();
+
+                while(input>=0) {
+                    min = Math.min(input, min);
+                    max = Math.max(input, max);
+                    X += input;
+                    Xsqrd += input * input;
+                    N++;
+
+                    System.out.print("Enter a score [negative score to quit]: ");
+                    input = scanner.nextInt();
+                }
+
+                System.out.print("Minimum Score: "+min);
+                System.out.print("\nMaximum Score: "+max);
+                System.out.print("\nAverage Score: "+ (double)X / N);
+
+                double pt2 = Math.pow(X,2)/N;
+                double X2 = (double)Xsqrd;
+                System.out.printf("\nStandard Deviation: %.2f", Math.sqrt((X2 - pt2)/(N-1)));
+            }
+        }
+
+
