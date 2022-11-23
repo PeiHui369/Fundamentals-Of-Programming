@@ -1,3 +1,7 @@
+//To declare all to 0
+//No need initialize unless put it at global scope
+double score, count, total, totalOfSquares, min, max;
+score = count = total = totalOfSquares = min = max = 0;
 
 import java.util.Scanner;
 
@@ -31,5 +35,6 @@ public class Main {
                 System.out.printf("\nStandard Deviation: %.2f", Math.sqrt((X2 - pt2)/(N-1)));
             }
         }
+
 
 
