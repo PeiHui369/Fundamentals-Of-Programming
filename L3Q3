@@ -1,3 +1,6 @@
+- System.out.println("The commission is ") is use in every condition, can just take out of if loop, so only write once
+- Exception for negative numbers (no logic)
+
 import java.util.*;
 
 public class L3Q3 {
