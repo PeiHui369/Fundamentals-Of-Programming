@@ -1,0 +1,37 @@
+//How to get the formula
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+    Scanner keyboard = new Scanner(System.in);
+
+    System.out.print("Enter a number: ");
+    int num = keyboard.nextInt();
+
+    System.out.println((int)(Math.pow(num,3) + 3 * Math.pow(num,2) + 2 * num)/6);
+
+    keyboard.close();
+    }
+
+}
+
+2.
+import java.util.Scanner;
+public class l4q2 {
+	public static void main(String[] args) {
+    	Scanner scan = new Scanner(System.in);
+    	System.out.println("input number: ");
+    	int num = scan.nextInt();
+    	int result1=0;
+    	for (int x = 1; x<=num; x++){
+        	int result2 = 0;
+        	for(int y=1; y<=x; y++){
+            	result2 += y;
+        	}
+        	result1 += result2;
+    	}
+    	System.out.print(result1);
+	}
+}
+
