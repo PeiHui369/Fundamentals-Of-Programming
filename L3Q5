@@ -1,4 +1,7 @@
 - Don't use import java.util.* because the file will become very large (be specific)
+- Simultaneous Equation
+parallel: no solution
+parallel & same line: infinite solution <--When input both same
 
 
 import java.util.*;
