@@ -1,3 +1,6 @@
+- Factor impossible greater than two, so to save time, only for loop until integer/2
+
+
 import java.util.Scanner;
 
 public class Main {
