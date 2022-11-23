@@ -1,3 +1,6 @@
+- Don't use import java.util.* because the file will become very large (be specific)
+
+
 import java.util.*;
 
 public class L3Q4 {
