@@ -1,3 +1,8 @@
+- random.nextInt(n) : 0 <= x < n
+- random.nextInt(n)+1 : 1 <= x <=6
+- Use exact terminology, follow the question
+- else only for when same score ((if use else when compare, the other wins when score
+
 import java.util.*;
 
 public class L3Q4 {
