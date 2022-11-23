@@ -1,3 +1,6 @@
+- Divsion: by 0 (Exception)
+=====================================================================
+
 import java.util.*;
 
 public class L3Q1 {
