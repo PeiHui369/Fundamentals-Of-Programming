@@ -26,3 +26,6 @@ public class L5Q3 {
         }
     }
 }
+
+// When generate, all the work hour same
+// Cannot control then no. of employee via N
