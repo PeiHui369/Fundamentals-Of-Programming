@@ -56,3 +56,5 @@ public class L5Q5 {
             }
         }
 }
+
+//BinarySearch does not print anything
