@@ -1,0 +1,8 @@
+Declare an array that used to store 12 floating point numbers.  
+
+public class Main {
+    public static void main(String[] args) {
+        float [] floatingPointNumbers = new float [12];
+        System.out.println(floatingPointNumbers[6]);
+    }
+}
