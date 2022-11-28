@@ -1,0 +1,7 @@
+Initialize an array that used to store the value of A to E. 
+
+public class Main {
+    public static void main(String[] args) {
+        char [] alphabet = {'A','B','C','D','E'};
+    }
+}
