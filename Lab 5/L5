@@ -1,0 +1,305 @@
+1. Write a program to randomly generate N student scores (0-100). 
+The program will prompt the user to enter N students and store the score in an array. 
+Then, the program will display 
+- a list of score, 
+- the highest score, 
+- the lowest score and 
+- the average score.
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        //Prompt user enter N students
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Enter number of students: ");
+        int N = keyboard.nextInt();
+
+        //Randomly generate N student scores
+        //Create array, size = no. of students
+        double[] score = new double[N];
+
+        double sum = 0;
+        for(int i = 0; i < N; i++){
+            score[i] += Math.round(Math.random() * 10000)/ 100.0; //To have score with decimal places
+            sum += score[i];
+
+            System.out.printf("Score %d: %.2f\n", (i+1), score[i]);
+        }
+        Arrays.sort(score); //sort array to ascending order
+
+        System.out.printf("The highest score is %.2f. \nThe lowest score is %.2f.\n",score[N-1], score[0]);
+        System.out.printf("The average score is %.2f.", sum/N);
+    }
+}
+
+>>
+Enter number of students: 5
+Score 1: 16.30
+Score 2: 37.01
+Score 3: 86.33
+Score 4: 27.41
+Score 5: 80.51
+The highest score is 86.33. 
+The lowest score is 16.30.
+The average score is 49.51.
+
+2. Write a program that generates 
+10 non-duplicate random integers 
+within the range from 0 to 20. 
+
+import java.util.ArrayList;
+
+public class L5Q1 {
+    public static void main(String[] args) {
+        ArrayList<Integer> randomNum = new ArrayList<Integer>(10);
+
+        for( int i = 0; i < 10; i++ ){
+            int integer = (int) (Math.random()*20);
+
+            while(randomNum.contains(integer)){
+                integer = (int) (Math.random() * 20);
+            }
+
+            System.out.print(integer);
+            System.out.print(i==9? "":",");
+            randomNum.add(integer);
+        }
+    }
+}
+
+>>
+14,1,4,17,0,7,13,5,19,10
+
+
+3. Write a program that randomly generate the seven day work hours (1-8 hours) for N employee. Then, display the work hours in seven days and the total hours for each employee. 
+import java.util.Random;
+import java.util.Scanner;
+
+public class L5Q3 {
+    public static void main(String[] args) {
+        //Prompt user input for no. of employees, N
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Enter the number of employees: ");
+        int N = keyboard.nextInt();
+
+        //Generate random seven day work hours
+        //Initialize var
+        int workHour=0, sum=0;
+        //Create array
+        for(int i = 1; i <= N; i++){
+            for(int j = 1; j <= 7; j++){
+                Random rand = new Random();
+                workHour = rand.nextInt(8)+1;
+                sum += workHour;
+                for(int k = 1; k<=7; k++){
+                    System.out.printf("Work hour %d: %d\n",k, workHour);
+                }
+                System.out.printf("The total hours for %d employee is %d hours.\n",N, sum);
+            }
+        }
+    }
+}
+
+//Generated work hour for same employee same for 7 days
+//Cannot control the no. of employee via N, always printed out 7 employees
+
+4. Write a program that rotates 90 degrees clockwise a 3 by 3 matrix.
+
+public class L5Q4 {
+
+    public static void main(String[] args) {
+        int[][] matrix = {{1,5,7},{3,6,9},{5,3,8}};
+        System.out.println("Original matrix: ");
+        for(int i = 0; i <= matrix.length-1; i++){
+            for(int j = 0; j <= matrix[0].length-1; j++){
+                System.out.print(matrix[i][j] + " ");
+                if(j>0 && j%2 == 0){System.out.print("\n");}
+            }
+        }
+
+        System.out.println("Matrix after rotating 90 degrees(transpose): ");
+        //1st Tranpose: 1st row become 1st column
+        for(int i = 0; i<matrix.length;i++){
+            for(int j = i; j < matrix[i].length; j++){
+                //checks if i is not equal to j because in transpose matrix diagonal elements will not swap
+                if(i!=j){
+                    //Swapping elements
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[j][i];
+                    matrix[j][i] = temp;
+                }
+            }
+        }
+        for(int i = 0; i <= matrix.length-1; i++){
+            for(int j = 0; j <= matrix[0].length-1; j++){
+                System.out.print(matrix[i][j] + " ");
+                if(j>0 && j%2 == 0){System.out.print("\n");}
+            }
+        }
+
+        //2nd Swap element: 1st column --> last column
+        System.out.println("Matrix after rotating 90 degrees(swap elements): ");
+        int r = 3; //n is no. of rows
+        int c = 3; //c is no. of columns
+        for(int i = 0; i < r; i++){
+            for(int j = i; j < c/2; j++){
+                if(i!=j){
+                    //swapping elements of the first column with the last column
+                    int temp = matrix[i][j];
+                    matrix[i][j] = matrix[i][c-j-1];
+                    matrix[i][c-j-1] = temp;
+                }
+            }
+        }
+        for(int i = 0; i <= matrix.length-1; i++){
+            for(int j = 0; j <= matrix[0].length-1; j++){
+                System.out.print(matrix[i][j] + " ");
+                if(j>0 && j%2 == 0){System.out.print("\n");}
+            }
+        }
+    }
+}
+
+>>
+Original matrix: 
+1 5 7 
+3 6 9 
+5 3 8 
+Matrix after rotating 90 degrees(transpose): 
+1 3 5 
+5 6 3 
+7 9 8 
+Matrix after rotating 90 degrees(swap elements): 
+1 3 5 
+5 6 3 
+7 9 8 
+
+5. Write a program that generates 20 random integers within the range from 0 to 100. 
+Sort the array in descending order. 
+Then, accepts an integer input from the user. 
+Then, search the array using this number. 
+Compare the performance of linear search and binary search.  
+
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Scanner;
+
+public class L5Q4 {
+
+    public static void main(String[] args) {
+
+        int[] arr = new int[20];
+
+        System.out.println("A list of 20 random integer within 0 to 100");
+        for (int i = 0; i < 20; i++) {
+            arr[i] = (int) (Math.random() * 100);
+            System.out.print(arr[i] + " ");
+        }
+        System.out.println();
+        Arrays.sort(new int[][]{arr}, Collections.reverseOrder());
+
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter a number to search: ");
+        int search = keyboard.nextInt();
+
+        linearSearch(arr, search);
+        binarySearch(arr, search);
+    }
+
+    static void linearSearch(int[] array, int key) {
+        int ctr = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (key == array[i]) {
+                System.out.println(i);
+                ctr++;
+            }
+        }
+        System.out.println("Number of loop: "+ctr);
+    }
+        static void binarySearch(int[] array, int key) {
+            int low = 0;
+            int high = array.length - 1;
+            int middle = 0;
+            int loop = 0;
+            while (high >= low) {
+                middle = low + (high-low) / 2;
+                if (key == array[middle]){
+                    System.out.println(middle);
+                     break;
+                }
+                else if (key < array[middle]) {
+                    low = middle + 1;
+                    loop++;
+                }
+                else {
+                    high = middle - 1;
+                    loop++;
+                }
+            }
+        }
+}
+//Binary search does not print anything
+
+6. Write a program that used to create Pascal Triangle in the square matrix. 
+The program will accept an integer from the users and use the integer to create the Pascal Triangle. 
+
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class L5Q6 {
+
+    public static void main(String[] args) {
+
+        Scanner keyboard = new Scanner(System.in);
+        ArrayList<Integer> temp = new ArrayList<>();
+        int rows = 0;
+
+        System.out.print("Enter the number of rows of Pascal Triangle to generate: ");
+        rows = keyboard.nextInt();
+
+        if (rows == 1) {
+            System.out.println(1);
+        }
+        else if (rows == 2) {
+            System.out.println("1 0\n1 1");
+        }
+        else {
+
+            System.out.printf("1 %s\n", ("0 ").repeat(rows - 1));
+            System.out.printf("1 1 %s\n", ("0 ").repeat(rows - 2));
+            temp.add(0);
+            temp.add(1);
+            temp.add(1);
+            temp.add(0);
+
+            for (int i = 2; i < rows; i++) {
+                for (int j = 0; j <= i; j++) {
+                    System.out.printf("%d ", temp.get(j) + temp.get(j + 1));
+                    temp.add(temp.get(j) + temp.get(j + 1));
+                }
+                System.out.printf("%s\n", ("0 ").repeat(rows - i - 1));
+                for (int k = 0; k <= i; k++) {
+                    temp.remove(2);
+                }
+                temp.add(0);
+            }
+        }
+
+        keyboard.close();
+    }
+}
+
+>>
+Enter the number of rows of Pascal Triangle to generate: 6
+1 0 0 0 0 0 
+1 1 0 0 0 0 
+1 2 1 0 0 0 
+1 3 3 1 0 0 
+1 4 6 4 1 0 
+1 5 10 10 5 1
+
+
+
+
