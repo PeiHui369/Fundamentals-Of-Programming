@@ -33,3 +33,11 @@ public class L5Q3 {
         sc.close();
     }
 }
+
+>>
+Enter number of employee: 2
+               Mon    Tue    Wed    Thu    Fri    Sat    Sun    Total Work Hours
+Employee  1      6      5      4      4      5      3      4                  31
+Employee  2      3      3      5      3      7      6      1                  28
+
+    
