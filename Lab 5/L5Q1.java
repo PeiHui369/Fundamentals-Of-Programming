@@ -25,3 +25,33 @@ public class L5Q1 {
         System.out.printf("The average score is %.2f.", sum/N);
     }
 }
+
+
+
+>>
+    Scanner keyboard = new Scanner (System.in);
+    int N = keyboard.nextInt();
+    int[] scores = new int[N];
+    for(int i = 0; i<N; i++){
+        scores[i] = (int)(Math.random() * 101)
+            //if (score[i] == 100) {System.out.print(scores[i])} --> to check can it generate 100
+        System.out.printf("%d\t ", scores]i]);
+        
+        if(i % 10 == 9){
+            System.out.println(" ")
+        }       
+    }
+
+int max = scores[0], min = scores[0];
+int sum = 0;
+for(int i = 0; i<N; i++) {
+    sum += scores[i];
+    max = Math.max(scores[i],max);
+    min = Math.min(scores[i],min);
+}
+
+double avg = (double) sum/ (double) N;
+
+System.out.printf("Highest Score: %d
+        
+        // implement small thing, run to check if have bugs
