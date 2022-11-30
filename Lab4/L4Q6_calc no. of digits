@@ -2,11 +2,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int randomNum = (int) (Math.random() * 100);
-        int counter = (int) Math.log10(randomNum);
+        int randomNum = (int) (Math.random() * 100); //Generate number
+        int counter = (int) Math.log10(randomNum); //To calc number of digits, result+1
         System.out.printf("Number of digits in %d is %d.", randomNum, counter+1);
 
     }
 
 }
+
 
