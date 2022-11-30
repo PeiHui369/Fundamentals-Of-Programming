@@ -51,7 +51,8 @@ public class L5Q6 {
     int N = in.nextInt();
     int[][] tri = new int [N][N];
 
-    tri[0][0] = 1;
+    // 2nd will start Pascal Triangle
+    tri[0][0] = 1; //to cover edge case, first element always 1
     for(int i = 1 ; i<N ; i++){
         tri[1][0] = 1;
         for(int j = 1; j<i; j++){
@@ -59,7 +60,7 @@ public class L5Q6 {
     }
 }
     
-    // all will get 0
+    // 1st all will get 0
     for(int i = 0; i < N; i++){
         for(int j= 0； j<N; j++){
             System.out.printf("%d ", tri[i][j]);
