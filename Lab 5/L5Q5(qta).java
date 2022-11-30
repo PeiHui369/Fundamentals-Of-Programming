@@ -128,10 +128,11 @@ public class L5Q5 {
         }
 }
 
-//BinarySearch does not print anything
 
 /*
 To print in descending order:
 Arrays.sort(arr)
 in for loop: arr[i] *= -1;
 */
+
+// Descending so the binarySearch is not same with lecture example
