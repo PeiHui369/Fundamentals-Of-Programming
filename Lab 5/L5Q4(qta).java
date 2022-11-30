@@ -17,6 +17,11 @@ public class L5Q4 {
             for(int j = i; j < matrix[i].length; j++){
                 //checks if i is not equal to j because in transpose matrix diagonal elements will not swap
                 if(i!=j){
+                    //swab 2 variables, need extra var to score 1 value
+                    /* var A, var B
+                    var temp_c = A
+                    A = B;
+                    B = temp_C*/
                     //Swapping elements
                     int temp = matrix[i][j];
                     matrix[i][j] = matrix[j][i];
@@ -35,16 +40,26 @@ public class L5Q4 {
         System.out.println("Matrix after rotating 90 degrees(swap elements): ");
         int r = 3; //n is no. of rows
         int c = 3; //c is no. of columns
+        
+        //Swapping elements
         for(int i = 0; i < r; i++){
-            for(int j = i; j < c/2; j++){
+                int temp = matrix [i][0];
+                matrix[i][0] = matrix [1][2]
+                matrix[i][2] = temp;
+        }
+        
+        /* for(int i = 0; i < r; i++){ //i is iterating the rows
+            for(int j = i; j < 1; j++){ //j < c/2; c/2 =1
+                System.out.printf("%d %d/n", i, j);
                 if(i!=j){
                     //swapping elements of the first column with the last column
                     int temp = matrix[i][j];
-                    matrix[i][j] = matrix[i][c-j-1];
-                    matrix[i][c-j-1] = temp;
+                    matrix[i][j] = matrix[i][2-j]; //c-1=2
+                    matrix[i][2-1] = temp;
                 }
             }
-        }
+        }*/
+        
         for(int i = 0; i <= matrix.length-1; i++){
             for(int j = 0; j <= matrix[0].length-1; j++){
                 System.out.print(matrix[i][j] + " ");
