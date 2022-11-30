@@ -1,0 +1,237 @@
+T5Q1a
+float [] floatingPointNumbers = new float [12];
+>>
+float[] number = new float[12];
+
+T5Q1b
+char [] alphabet = {'A','B','C','D','E'};
+>>
+char[] letter = {'A', 'B', 'C', 'D', 'E',};
+
+T5Q1c
+String[] name = new String[100];
+>>
+String[] name = new String [100];
+
+T5Q1d
+int[][] table = new int[6][2];
+>>
+int[][] table = new int[6][2];
+
+/* To loop through array
+for-loop
+inner: row
+outer: column
+*/
+
+T5Q1e
+int[][] table = {{6, 9}, {2, 5}, {4, 6}};
+>>
+int[][] matrix = {{6,9}, {2,5}, {4.6}};
+
+T5Q1f
+int[][] table = new int[3][2];
+        table[0][0] = 6;
+        table[0][1] = 9;
+        table[1][0] = 2;
+        table[1][1] = 4;
+        table[2][0] = 3;
+        table[2][1] = 7;
+        
+>>
+matrix[1][1] = 4;
+matrix[2][0] = 3;
+matrix[2][1] = 7;
+/*Only modify those index with changed value*/
+
+T5Q1g
+Display all the values of an array name contact in separate lines. 
+>>
+for(int i = 0; i < contact.length(); i++){
+  System.out.println(contact[i]);}
+
+2. Correct the error for the following statements. 
+a.  String[] code = {'AAA', 'AAB', 'AAC', 'AAD'}; 
+>> String[] code = {"AAA", "AAB", "AAC", "AAD"}; 
+/*String enclosed with double quotes*/
+/*Character enclosed with single quotes*/
+
+b. 
+int[] num = new num[10]; 
+for(int k=0; k<=num.length(); k++) 
+sum+=num; 
+>> 
+int[] num = new int[10]; 
+for(int k=0; k<num.length(); k++); //k<num.length
+sum+=num[k]; 
+/*index start at 0, last index is .length()-1 */
+
+
+c. 
+int [][]t = new int[3][]; 
+t[1][2] = 5; 
+
+>>
+int [][]t = new int[3][]; //Ragged array
+t[1] = new int[3];#
+t[1][2] = 5; 
+/* Here, t is a ragged array and the dimension on the right hand side[3][] specifies one dimension as fixed and another dimension as unknown.
+The second array of size 3 is stored in the second slot of the t array.
+
+t[3][0]
+           ---------------------------------------------
+t[0][]     |    empty     |    empty     |    empty     |
+t[1][2]    |   created    |   created    | t[1][2] = 5  |
+t[2][]     |    empty     |    empty     |    empty     |
+           ----------------------------------------------
+
+*/
+
+
+d.
+int i=4; 
+int []score = new int[5]; 
+score [1] = 78; 
+score[++i] = 100;
+>>
+int i = 4; 
+int [] score = new int [5]; 
+score [1] = 78; 
+score[i] = 100; 
+/* Use for loop to add data*/
+
+
+3. Determine the values of each element of array marks. 
+Assume the array was declared as: 
+
+int[] marks = new int[5]; 
+int i = 0, j = 1; 
+marks[i] = 12; 
+marks[j] = marks[i] + 19; 
+marks[j-1] = marks[j] * marks [j];
+marks[j*3] = marks[i+1]; 
+marks[++j] = marks[i]%5; 
+marks[2*j] = marks[j-1];
+>>
+961 (31*31)
+31 (12 + 19)
+1 (++j; j = 1+1 = 2) (961 % 5 = 1)
+31 (i=0; 0+1 = 1; 2nd element)
+31 (2*2 = 4 = j ; j-1 = 2-1 = 1)
+
+
+4. Write the statements that display the number of occurrence of the word "the" (case sensitive) in a string array name sentence. 
+
+public class Main {
+    public static void main(String[] args) {
+        String[] arr = {"the","cat","plays","the","ball"};
+        int ctr = 0;
+        for(String i : arr){
+            if(i == "the"){
+                ctr += 1;
+            }
+        }
+        System.out.println("The number of occurrence of 'the' is: "+ctr);
+    }
+}
+>>
+int cnt = 0, index;
+for( int i = 0; i<sentence.length; i++)
+{
+  index = 0;
+  while((index = sentence[i].indexOf("the", index)) != -1)
+  {
+    index ++;
+    cnt ++;
+  }
+}
+System.out.println("The number of occurrence of the word \"the\" is" +cnt);
+
+/* If the specified word cannot be found, indexOf() returns -1) 
+sentence[i]: to iterate sentence by sentence
+*/
+
+
+5. Write the statements that display the string array name sentence in reverse order.
+Each string element must be displayed in reverse order as well. 
+
+public class Main {
+    public static void main(String[] args) {
+        String[] arr = {"the","cat","plays","the","ball"};
+        for(int i = arr.length-1; i>=0; i--){
+            for(int j = arr[i].length()-1; j>=0; j--){
+                System.out.print(arr[i].charAt(j));
+            }
+            System.out.print(" ");
+        }
+    }
+}
+
+>>
+for(int i = sentence.length()-1; i>=0; i--){
+  for (int j = sentence[i].length()-1; j>=0; j--){
+    System.out.print(sentence[i].charAt(j));}
+  System.out.println();
+}
+
+/*
+0     i1
+HELLO WORLD
+          j4
+             
+             sentence length is 2*/
+
+6. Write the statements that generate 1 random integer within 0 – 255.
+Convert the number to binary and store the bit into an 8 bit array. 
+Then, display the binary number. 
+
+import java.lang.reflect.Array;
+import java.util.Random;
+
+public class Main {
+    public static void main(String[] args) {
+        //Generate random integer within 0 - 255
+        Random rand = new Random();
+        int num = rand.nextInt(255);
+        System.out.println(num);
+
+        //Convert num to binary
+        String numStr = Integer.toBinaryString(num);
+        System.out.println(numStr);
+
+        //Save into 8 bit array
+        char[] bit = new char[8];
+        for(int j = numStr.length()-1; j>=0; j--) {
+            for (int k = 0; k <= numStr.length(); k++) {
+                bit[j] = numStr.charAt(k); #ERROR
+            }
+        }
+        System.out.print(bit);
+    }
+}
+
+>>
+
+int input =224;
+// need add random generator to generate number within 0 to 255
+boolean[] bits = new boolean[8];
+for(int i = 7; i>=0; i--){ //start with 7, as length is 8, so 8-1=7 //index start at end(right) then to the left
+  bits[7-i] = (input & (1<<i)) != 0; //bits[7-i] = (7 & (1<<)) != 0
+}
+
+System.out.print(input + "=");
+for(int i = 0; i<bits.length; i++){
+  if(bits[i]){
+    System.out.print("1");
+  }
+  else{
+    System.out.print("0");
+  }
+System.out.println();
+
+  
+   
+Left shift operator shifts the bits of the number towards left a specified number of positions. 1 is left-shifted by i.
+0 and 1 carry false and true
+0 0 0 0 0 1 1 1 = 7
+
