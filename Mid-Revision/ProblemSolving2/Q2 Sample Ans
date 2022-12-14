@@ -1,0 +1,85 @@
+/*
+package javaapplication3;
+import java.util.Scanner;
+/**
+ *
+ * @author course010
+ */
+public class JavaApplication3 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        
+        int factor,number,totalans=0,correctans=0;
+        boolean answer = true;
+        boolean userans;
+        
+         Scanner k = new Scanner(System.in);
+         
+        do{
+            System.out.print("Enter a number (-1) to quit : ");
+            number = k.nextInt();
+            
+            if(number == -1)
+                break;
+            
+            System.out.print("Enter a factor : ");
+            factor = k.nextInt();
+            
+            System.out.print("Is "+factor+" a factor of "+number+"? (true/false) : ");
+            userans = k.nextBoolean();
+            if(number%factor==0)
+                answer = true;
+            
+            else
+                answer = false;
+            
+            if(answer == userans){
+                System.out.println("Your answer is correct. ");
+                correctans++;
+                        
+            }
+            else
+                System.out.println("Your answer is incorrect. ");
+                
+            
+            
+            totalans++;
+            
+            
+            
+            
+        }
+        while (number!=-1);
+        
+        System.out.print("The final score is "+correctans+"/");
+        System.out.print(totalans);
+        System.out.println();
+    }  
+}
+
+            
+            
+            
+            
+            
+        }
+        while (number!=-1);
+        
+        System.out.println("The final score is "+correctans+"/"+totalans);
+    }  
+}
+
+            
+            
+        }
+        while (number!=-1);
+        
+        System.out.println("The final score is "+correctans+"/"+totalans);
+    }  
+}
+
+
+
