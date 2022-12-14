@@ -29,17 +29,14 @@ public class Q4 {
         int factor = in.nextInt();
         in.nextLine();
         System.out.printf("%d is a factor of %d? (true/false): ", factor, num);
-        String answer = in.nextLine();
+        boolean answer = in.nextBoolean();
         
         boolean fact = false;
         if(num % factor == 0){
             fact = true;
         }
         
-        if(fact && answer.equals("true")){
-            System.out.println("Your answer is correct.");
-            ctrT ++;
-        }else if(!fact && answer.equals("false")){
+        if(fact == answer){
             System.out.println("Your answer is correct.");
             ctrT ++;
         }else{
@@ -48,6 +45,7 @@ public class Q4 {
         }
         }while(num!=-1);
         
-        System.out.println("The final score is " + (ctrT/(ctrT+ctrF)));
+        System.out.println(ctrT);
+        System.out.println("The final score is " + ctrT +"/" + (ctrT+ctrF));
     }
 }
