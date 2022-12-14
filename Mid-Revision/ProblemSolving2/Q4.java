@@ -1,0 +1,51 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package javaapplication1;
+
+/**
+ *
+ * @author 22004781
+ */
+import java.util.Scanner;
+
+public class Q4 {
+    public static void main(String[] args){
+    
+        
+        Scanner in = new Scanner(System.in);
+        int num, ctrT =0, ctrF=0;
+        
+        do{
+        System.out.println("Enter a number (-1 to quit): ");
+        num = in.nextInt();
+        
+        if(num == -1){
+            break;
+        }
+        
+        System.out.println("Enter a  factor: ");
+        int factor = in.nextInt();
+        in.nextLine();
+        System.out.printf("%d is a factor of %d? (true/false): ", factor, num);
+        boolean answer = in.nextBoolean();
+        
+        boolean fact = false;
+        if(num % factor == 0){
+            fact = true;
+        }
+        
+        if(fact == answer){
+            System.out.println("Your answer is correct.");
+            ctrT ++;
+        }else{
+            System.out.println("Your answer is incorrect.");
+            ctrF ++;
+        }
+        }while(num!=-1);
+        
+        System.out.println(ctrT);
+        System.out.println("The final score is " + ctrT +"/" + (ctrT+ctrF));
+    }
+}
