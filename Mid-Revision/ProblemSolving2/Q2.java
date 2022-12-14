@@ -10,7 +10,7 @@ package javaapplication1;
  */
 import java.util.Scanner;
 
-public class Q4 {
+public class Q2 {
     public static void main(String[] args){
     
         
