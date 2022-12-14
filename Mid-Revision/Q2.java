@@ -13,7 +13,7 @@ public class Q2 {
             durian = a.nextLine();
 
             //terminate = 1 mark
-            if (durian.equals("Quit")) {
+            if (durian.equals("Quit")) { //To break the loop
                 break;
             }
 
@@ -33,7 +33,7 @@ public class Q2 {
             }
             a.nextLine();
         }
-        while (!durian.equals("Quit")); //loop = 2 marks;
+        while (!durian.equals("Quit")); //loop = 2 marks; //To keep the loop continue
         //output = 1 mark
         //2 decimal places = 1 mark
         System.out.printf("Total Sales: %.2f\n", totalSale);
