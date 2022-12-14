@@ -1,0 +1,32 @@
+import java.util.Scanner;
+import java.util.Random;
+/**
+ *
+ * @author shaza
+ */
+public class problemsolving2Q1 {
+    public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        int N;
+        System.out.println("Enter the number of staff [N]: ");
+        N = input.nextInt();
+        int count =0;
+        
+        for(int i=0; i<=N; i++){
+            Random rnd = new Random();
+            int id = 10000 + rnd.nextInt(90000);
+            System.out.println("Staff ID: " + id);
+            
+            String idNumber = Integer.toString(id);
+            
+            if(idNumber.charAt(1)%2!=0 && idNumber.charAt(3)%2==0){
+                System.out.println("Weekend Duty");
+                count++;
+            }
+            else
+                System.out.println("Weekend Off");    
+        }
+        System.out.println("The number of staffs work during weekend: " + count);
+        
+    }
+}
