@@ -1,0 +1,251 @@
+1a. Define a static method that returns the maximum number from 3 integer parameters.
+
+import java.util.Scanner;
+
+public class T6Q1a {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter 3 integer: ");
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        System.out.println("The maximum number is "+maxNum(a,b,c));
+    }
+
+    static int maxNum(int a, int b, int c){
+        int maxNum = 0;
+        if(Math.max(a,b) == a && Math.max(a,c)==a) {
+            maxNum = a;
+        }else if(Math.max(a,b) == b && Math.max(b,c)==b){
+            maxNum = b;
+        }else if(Math.max(a,c) == c && Math.max(b,c)==c){
+            maxNum = c;
+        }else if(a==b || b==c || a==c){
+            return -1;
+        }
+        return maxNum;
+    }
+
+}
+
+=================================
+1b. Define a static method that that determine whether the given integer is a square number. 
+
+import java.util.Scanner;
+
+public class T6Q1b {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter an integer: ");
+        int a = in.nextInt();
+        System.out.println(a + " is a square number? " + squareNum(a));
+    }
+
+    static boolean squareNum(int n){
+        int b = (int)Math.sqrt(n);
+        return (Math.pow(b,2) == n);
+    }
+
+}
+
+=============================================
+1c. Define a static method that use to compute combination function C(n,k). 
+C(n,k) gives the number of different k-element subsets that can be found in a given set of n elements. 
+C(n,k) = n! / (k! (n-k)!
+
+import java.util.Scanner;
+
+public class T6Q1c {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Number of elements: ");
+        int a = in.nextInt();
+        System.out.println("Number of different k-element subsets: ");
+        int b = in.nextInt();
+        System.out.println(C(a,b));
+    }
+
+    static int factorial(int n){
+        for(int i = n-1; i>0; i--){
+            n *= i;
+        }
+        return n;
+    }
+
+    static int C(int n, int k){
+        return (factorial(n)/(factorial(k)*(factorial(n-k))));
+    }
+
+}
+
+==============================================
+1d. Define a static method that used to determine whether the parameter is a pentagonal number. 
+A pentagonal number is a figurate number that extends the concept of triangular and square numbers to the pentagon. 
+Pn = ½ n(3n -1) 
+
+public class T6Q1d {
+    public static void main(String[] args){
+        pentagonalNumber(5);
+    }
+
+    static void pentagonalNumber(int test) {
+        String result = test + " is not a pentagonal number.";
+        int num = 0;
+        for (int n = 0; num <= test; n++) {
+            num = (n * (3 * n - 1)) / 2;
+            if (test == num) {
+                result = test + " is a pentagonal number.";
+            }
+        }
+
+        for (int n = 0; num <= test; n--) {
+            num = (n * (3 * n - 1)) / 2;
+            if (test != num) {
+                result = test + " is a pentagonal number.";
+            }
+        }
+        System.out.println(result);
+
+    }
+}
+
+===============================================
+1e. Define a static method that displays the number of letters and the number of digits of a String parameter.
+
+public class T6Q1e {
+    public static void main(String[] args){
+        String a = "abc123";
+        calculation(a);
+    }
+
+    static void calculation(String s){
+        int count = 0;
+
+        for(int i=0;i<s.length();i++)
+        {
+            if(Character.isDigit(s.charAt(i))){
+                count++;}
+
+        }
+        System.out.println("The number of digits is " + count);
+        System.out.println("The number of letters is " + (s.length() - count));
+    }
+
+}
+
+=================================================================
+1f. Define a static void method that generates 10 random numbers within 0 to 100 to the method’s parameter. 
+The random numbers can be accessed by the main method. 
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class T6Q1d {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the amount of number to generate: ");
+        int n = in.nextInt();
+        randomNumGenerator(n);
+    }
+
+    static void randomNumGenerator(int n) {
+        Random rand = new Random();
+        int i = 0;
+        int[] arr = new int[n];
+        while(i<n){
+            arr[i] = rand.nextInt(100);
+            i++;
+        }
+
+        for(int j=0; j<arr.length; j++){
+            System.out.println(arr[j]);
+        }
+    }
+}
+
+=========================================================
+1g. Define a static void method that returns the area and the circumference of a circle given the argument is radius. Area = πr2 and Circumference = 2 πr. 
+
+
+import java.util.Scanner;
+
+public class T6Q1g {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the radius: ");
+        int r = in.nextInt();
+        areaCircumference(r);
+    }
+
+    static void areaCircumference(int r) {
+        double area = Math.PI * Math.pow(r, 2);
+        double circumference = 2 * Math.PI * r;
+
+        System.out.printf("Area is %.2f and circumference is %.2f.", area, circumference);
+    }
+}
+
+=========================================================
+1h. Define a static method that generate random number within 0 – 10. The method will return the first random number that generate twice.
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class T6Q1h {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter the amount of number to generate: ");
+        int n = in.nextInt();
+        randomNumGenerator(n);
+    }
+
+    static void randomNumGenerator(int n) {
+        Random rand = new Random();
+        int i = 0;
+        int[] arr = new int[n];
+        while(i<n){
+            arr[i] = rand.nextInt(11);
+            i++;
+        }
+
+        System.out.println(Arrays.toString(arr));
+
+        for(int j=0; j<arr.length; j++){
+            for(int k=1; k<arr.length-1; k++){
+                if(arr[j] == arr[k]) {
+                    System.out.println(arr[k]);
+            }
+            }
+        }
+    }
+}
+
+=====================================================
+2. Write a program that consists of a method that can display three numbers in decreasing order
+
+import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class T6Q2 {
+    public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        System.out.println("Enter 3 integers: ");
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        numsInDescending(a,b,c);
+    }
+
+    static void numsInDescending(int a, int b, int c) {
+        if(a>b && a>c){
+            System.out.println(a +", "+Math.max(b,c)+ ", " + Math.min(b,c));
+        }else if(b>a && b>c){
+            System.out.println(b +", "+Math.max(a,c)+ ", " + Math.min(a,c));
+        }else if(c>a && c>b) {
+            System.out.println(c + ", " + Math.max(a, b) + ", " + Math.min(a, b));
+        }
+    }
+}
+
