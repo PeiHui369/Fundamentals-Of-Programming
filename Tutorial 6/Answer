@@ -1,0 +1,158 @@
+a. Define a static method that returns the maximum number from 3 integer parameters.
+
+public static double getMax(int a, int b, int c){ //OR public static int
+  if(a>b)
+    if(a>c)
+      return a;
+    else
+      return c;
+  else
+    if(b>c)
+      return b;
+    else
+      return c;
+}
+
+
+
+b. Define a static method that that determine whether the given integer is a square number.
+
+public static boolean isSquare (int a){
+  int i = 1;
+  while(i*i <= a){
+    if(i*i == a)
+      return true;
+    i++;
+  }
+  return false;
+}
+
+
+
+c. Define a static method that use to compute combination function C(n,k). 
+C(n,k) gives the number of different k-element subsets that can be found in a given set of n elements. 
+C(n,k) = n! / (k! (n-k)! 
+
+public static double combination (int n, int k){
+  int nfact = 1; kfact = 1; nkfact = 1;
+  for(int i=2; i<=n; i++)
+    nfact *= i;
+  for(int i=2; i<=k; i++)
+    kfact *= i;
+  for(int i=2; i<=n-k; i++)
+    nkfact*=i;
+  return nfact/ (double)(kfact * nkfact);
+}
+
+// Use the combination formula to calculate the number of possible arrangements. (A,B,C), (C,B,A)
+/*KEY: Factorial is | for(int i=2; i<=n; i++){val *= i;} | //value initialize as 1l 
+- get factorial of n, save result as value 
+*/
+
+d. Define a static method that used to determine whether the parameter is a pentagonal number. 
+A pentagonal number is a figurate number that extends the concept of triangular and square numbers to the pentagon. Pn = ½ n(3n -1)
+
+public static boolean isPentagonal(int num){
+  for (int pent = 1, i=1; pent<=num; i++)
+    pent = i * (3*i-1)/2;
+    if(pent==num)
+      return true;
+  return false;
+}
+  
+  //Exam provided formula, need to know how to turn into code
+  
+e. Define a static method that displays the number of letters and the number of digits of a String parameter.
+
+public void wrapperChar(String s){
+  int(letter=0, digit=0;
+  for(int i=0; i<s.length(); i++){
+    if(isLetter(s.charAt(i))
+      letter++;
+    if(isDigit(s.charAt(i))
+      digit++;
+  }
+  System.out.println("The number of letter(s) is " + letter);
+  System.out.println("The number of digit(s) is " + digit);
+}
+
+  
+  /*KEY: isLetter(str.charAt(i)) & isDigit(str.charAt(i)) 
+  */
+
+
+f. Define a static void method that generates 10 random numbers within 0 to 100 to the method’s parameter. 
+The random numbers can be accessed by the main method.
+
+public static void generate(int[] a){
+  final int MAX = 101; //Generate from 0 inclusive to 100 inclusive
+  Random g = new Random();
+  for(int i=0; i<a.length; i++)
+    a[i] = g.nextInt(MAX);
+}
+
+g. Define a static void method that returns the area and the circumference of a circle given the argument is radius. 
+Area = πr2 and Circumference = 2 πr.
+
+public static void computeCIrcle(int r, int a[]) {
+  a[0] = Math.PI * r * r;
+  a[1] = 2 * Math.PI * r;
+}
+
+h. Define a static method that generate random number within 0 – 10. 
+The method will return the first random number that generate twice. 
+
+import java.util.Random;
+public class generate{
+  public static void main(String[] args){
+    Random g = new Random();
+    //Create an array with size 11
+    int[] num = new int[11];
+    int r;
+    while(true){
+    //Generate random num within 0 inclusive - 10 inclusive
+      r = g.nextInt(11);
+      System.out.println("A" +r); //
+      if(num[r] == 1){
+        System.out.print("Twice: "); //
+        System.out.print("B" + r); //
+        break;
+        }
+      else
+        num[r] = 1;
+        System.out.println("C" + num[r]; //
+      }
+   }
+}
+
+>>
+
+
+2. Write a program that consists of a method that can display three numbers in decreasing order.
+
+public static void descending(int a, int b, int c) {
+  if(a>b) {
+    if(a>c && b>=c){
+      System.out.println(a + "," + b + "," + c);
+    else if(a>c && b<c)
+      System.out.println(a + "," + c + "," + b);
+    else
+      System.out.println(c + "," + a + "," + b);
+  }
+  else {
+    if(b>c && a>c)
+      System.out.println(b + "," + a + "," + c);
+    else if (b>c && a<c)
+      System.out.println(b + "," + c + "," + a);
+    else
+      System.out.println(c + "," + b + "," + a);
+  }
+}
+
+
+
+
+
+
+
+
