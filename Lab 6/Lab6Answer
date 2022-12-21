@@ -1,0 +1,168 @@
+1. Write a Java method that returns a triangular number. A triangular number is defined as 1+2+3+…+ n. 
+Then, write a Java program to use the method to display the first 20 triangular numbers.
+
+public static void main(String[] args) {
+        print20TriangleNums();
+    }  
+    
+    public static void print20TriangleNums() {
+        int curTriangleNumber = 0;
+        
+        for (int j = 1; j <= 20; j++) {
+            curTriangleNumber += j;
+            
+            System.out.println(curTriangleNumber);
+        }
+    }
+
+
+
+2. Write a Java method multiPrint(int n, char c) that prints n copies of character c. 
+Then, write a Java program to use the method to display the triangles and diamonds.
+
+public static void main(String[] args){
+        Scanner input = new Scanner(System.in);
+        System.out.print("Enter n: ");
+        int n = input.nextInt();
+        System.out.print("Enter character c: ");
+        char c = input.next().charAt(0);
+        
+        System.out.println("Triangle: ");
+        triangle(n,c);
+        System.out.println("Diamond: ");
+        diamond(n,c);
+    }
+    static void multiPrint(int n, char c){
+        for (int i=1;i<n;i++)
+            System.out.print(c);
+    }
+    
+    static void multiPrintWithSpaces(int n, char c){
+        for (int i=1;i<n;i++)
+            System.out.print(c + " ");
+    }
+    
+    static void triangle(int n, char c){
+        for(int i=1;i<=n;i++){      // loop to iterate for the given number of rows
+            multiPrint(n-i+1, ' ');
+            multiPrintWithSpaces(i, c);
+            System.out.println();
+        }
+    }
+    
+    static void diamond(int n, char c){
+        for(int i=1;i<=n;i++){
+            multiPrint(n - i + 1, ' ');
+            multiPrintWithSpaces(i, c);         
+            System.out.println();
+        } 
+        for (int i=1; i<n;i++){
+            multiPrint(i + 1, ' ');
+            multiPrintWithSpaces(n-i, c);
+            System.out.println();
+        }
+    }
+
+
+3. Write a Java method that accepts an array of 10 integers. 
+The method should reverse the integer in the array. 
+Example, if the number is 1234, the number will change to 4321
+
+// Reverse array order: Create new array
+
+public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        int[] arr = new int[10];
+
+        for(int i = 0; i<10; i++) {
+            System.out.println("Enter an integer: ");
+            arr[i] = in.nextInt();
+        }
+
+        System.out.println("Array before reversed: " + Arrays.toString(arr));
+        System.out.println("Array after reversed: " + reversed(arr));
+    }
+
+    static String reversed(int[] array){
+        int temp = 0;
+        int[] revArr = new int[array.length];
+        
+        for(int j = 0; j < array.length; j++){
+            revArr[array.length - 1 - j] = array[j];
+        }
+        
+        return Arrays.toString(revArr);
+    }
+
+
+4. Write a Java method that implements Euclidean Algorithm to return the greatest common divisor of two positive integers. 
+Then, write a program to get the GCD for (24, 8) and (200, 625).
+
+/*
+    GCD(A, B);
+    B < A;
+    
+    A = B * q + r;
+    GCD(A, B) == GCD(B, r);
+    GCD(B, r) == GCD(r, B % r);
+    */
+    public static void main(String[] args) {
+        System.out.println(    GCD(24, 8)); //8
+        System.out.println(    GCD(200, 625)); // 25?
+    }
+    
+    public static int GCD(int a, int b){
+        if (b == 0) {return a;}
+        else {return GCD(b, a%b);}
+    };
+
+/* Long Method
+    public static void xGCD(int a, int b){
+    	//if a>b, a=x , if a<b, b=x
+        
+    	int x, y;
+    	if (a>b){
+        	x = a; y = b;
+    	} else {
+        	x = b; y = a;
+    	}
+        // x is always greater than y
+        
+        int r1 = y, r2 = x%y;
+        while (r2 != 0){
+            int hold = r2;
+            r2 = r1%r2;
+            r1 = hold;
+        }
+        System.out.println(r1);
+    }
+ */
+ 
+ 5. Write a Java method that accepts three parameters, 
+ the method will compare whether the third parameter value is equal to the multiplication of parameter 1 and parameter 2. 
+ Then, write a Java multiplication game for any random number within 0 – 12.
+
+ 
+//Method to compare: return boolean true false
+// if(cond){return true} return false; >> return(cond)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
