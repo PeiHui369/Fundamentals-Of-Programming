@@ -142,9 +142,109 @@ Then, write a program to get the GCD for (24, 8) and (200, 625).
  the method will compare whether the third parameter value is equal to the multiplication of parameter 1 and parameter 2. 
  Then, write a Java multiplication game for any random number within 0 – 12.
 
- 
 //Method to compare: return boolean true false
 // if(cond){return true} return false; >> return(cond)
+
+public static void main(String[] args){
+        Scanner in = new Scanner(System.in);
+        Random rand = new Random();
+        int score = 0;
+        int a,b,c;
+
+        while(true){
+            System.out.println("\nEnter negative number to quit. ");
+            a = rand.nextInt(13);
+            b = rand.nextInt(13);
+            System.out.printf("%d x %d = ", a, b);
+            c = in.nextInt();
+            
+            if (c < 0) {
+                break;
+            }
+            
+            if (isABequalC(a, b, c)){
+                score++;
+            }
+        }
+
+        System.out.println("\nYour Score is "+score);
+    }
+
+    public static boolean isABequalC(int a, int b, int c){
+        return (a * b == c);
+    }
+
+
+
+6. Write a Java method that determine whether a number is a palindromic prime and another method that determine whether a number is emirp (the number is a prime number and the reverse also a prime number and is not palindromic prime). 
+Then, write a Java program to use the methods to display the first 20 palindromic prime and emirp.
+
+Emirp: ab -> ba (ab and ba are both prime)
+Palindromic prime: aba --> reflect --> aba
+
+public static void main(String[] args) {
+        System.out.println("Palindromic prime");
+        for(int arg=2, i=0; i<20 ; arg++){
+            if(isPalinPrime(arg)){
+                System.out.print(arg + " ");
+                i++;
+            }
+        }
+        
+        System.out.println("\nEmirp");
+        for(int arg=2, i=0; i<20 ; arg++){
+            if(isEmirp(arg)){
+                System.out.print(arg + " ");
+                i++;
+            }
+        }
+        
+        System.out.println();
+    }
+    
+    public static boolean isPalinPrime(int arg) {
+        return isPalin(arg) && isPrime(arg);
+    }
+    
+    public static boolean isPalin(int arg) {
+        int argCopy = arg;
+        int reverse = 0;
+
+        while(arg > 0){
+            reverse = reverse * 10 + arg % 10;
+            arg /= 10;
+        }
+
+        return (argCopy == reverse);
+    }
+    
+    public static boolean isPrime(int arg) {
+        for (int i = 2 ; i <= Math.sqrt(arg) ; i++){
+            if (arg % i == 0) 
+                return false;
+        }
+        return true;
+    }
+    
+    public static boolean isEmirp(int arg) {
+        int reverse = 0;
+        int argCopy = arg;
+        
+        while(argCopy > 0){
+            reverse = reverse * 10 + argCopy % 10;
+            argCopy = argCopy / 10;
+        }
+        if (Integer.toString(arg).length() != Integer.toString(reverse).length()){
+            return false;
+        }
+        //System.out.printf("%d %d\n", arg, reverse);
+        return isPrime(arg) && isPrime(reverse) && !isPalinPrime(arg);
+    }
+
+
+
+
+
 
 
 
