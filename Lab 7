@@ -1,0 +1,90 @@
+1. Write a program that store the table below in a binary file name coursename.dat.
+Then, ask the users to enter a course code. 
+The program will display the course name from coursename.dat.
+
+String[] code = {"WXES1116", "WXES1115", "WXES1110", "WXES1112"};
+String[] name = {"Programming I", "Data Structure", "Operating System", "Computing Mathematics I"};
+
+// Writing to Binary File
+try{
+  ObjectOutputStream outputStream = new ObjectOutputStream (new FileOutputStream("coursename.dat"));
+  for(int i=0; i<code.length; i++){
+    outputStream.writeUTF(code[i]);
+    outputStream.writeUTF(name[i]);
+  }
+  outputStream.close();
+} catch (IOException e){
+  System.out.println("Problem with file output.")
+}
+
+//Prompt user input
+boolean status = false;
+Scanner k = new Scanner(System.in);
+System.out.print("Please enter course code:" );
+String input = k.nextLine();
+
+// Reading from Binary File
+try{
+  ObjectInputStream inputStream = new ObjectInputStream (new FileInputStream("coursename.dat"));
+  try{
+  #
+    while(true){
+      if(input.equals(inputStream.readUTF()){ 
+        System.out.println("Course Code: " + input);
+        System.out.println("Course Name: " + inputStream.readUTF()); 
+        status = true;
+        break;
+      }else{
+        inputStream.readUTF();
+      }
+     }
+    #
+    } catch (EOFException e) {}
+    inputStream.close();
+    } catch (FileNotFoundException e){
+      System.out.println("File was not found");
+    } catch (IOException e) {
+      System.out.println("Problem with file input");
+    }
+    if(!status){
+      System.out.println("The course " + input + " is not available");
+    }
+    
+ 2. The code below is used to read the contents of a Web page. 
+ Write the contents of the Web page into a text file name index.htm.
+
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+…
+ try {
+ URL u = new URL("http://www.fsktm.um.edu.my");
+ URLConnection cnn = u.openConnection();
+ InputStream stream = cnn.getInputStream();
+ Scanner in = new Scanner(stream); //Reading from the web content
+
+ }
+ catch (IOException e) {
+ System.out.println("IO Error:" + e.getMessage());
+ }
+
+#
+//Writing to text file
+PrintWriter out = new PrintWriter(new FileOutputStream("index.htm
+while(in.hasNextLine())
+  out.println(in.nextLine()); //While there is content read from the website, write it to the text file
+out.close();
+#
+
+3. Write the statements that replace each line of a text file with its reverse and save it to a new text file name reverse.txt.
+try{
+  String input;
+  //Writing to a text file
+  PrintWriter out = new PrintWriter (new FileOutputStream("reverse.txt");
+  Scanner inputStream = new Scanner(new FileInputStream("data.txt"));
+  while(inputStream.hax
+
+    
+    
+  
