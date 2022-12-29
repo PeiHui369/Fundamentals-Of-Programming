@@ -82,9 +82,168 @@ try{
   String input;
   //Writing to a text file
   PrintWriter out = new PrintWriter (new FileOutputStream("reverse.txt");
+  //Reading from a text file
   Scanner inputStream = new Scanner(new FileInputStream("data.txt"));
-  while(inputStream.hax
-
+  
+  //while still have content in text file
+  while(inputStream.hasNextLine()){
+    input = inputStream.nextLine();
+    System.out.println(input);
     
+    //For loop to print from end to start
+    for(int i = input.length()_1; i>=0; i--){
+      out.print(input.charAt(i));
+      }
+    out.println();
+  }
+  inputStream.close();
+  out.close();
+  
+  //Exception
+} catch(FileNotFoundException e){
+  System.out.println("File was not found");
+} catch(IOException e){
+  System.out.println("IOError." + e.getMessage());
+}
+
+4. Write a program that display the number of characters, words and lines in a text file.
+Assume that each word is separated by one space character.
+
+try{
+  String input;
+  int line = 0, character = 0, word = 0, cnt;
+  Scanner inputStream = new Scanner(new FileInputStream("data.txt"));
+  while(inputStream.hasNextLine()){
+  
+    input=inputStream.nextLine();
+    line++;
+    
+    character += input.length();
+    
+    //calc word (preferably use str.split(" ") and store in array
+    int i =0;
+    while(i!=-1){
+      i = input.indexOf(" ", i);
+      if(i!=-1){
+        i = i + 1;
+       }
+       word++;
+    }
+ }
+   inputStream.close();
+   System.out.println("Number of line(s) in the text file: " + line);
+   System.out.println("Number of word(s) in the text file: " + word);
+   System.out.println("Number of character(s) in the text file: " + character);
+
+} catch (FileNotFoundException e){
+  System.out.println(File was not found");
+} catch (IOException e){
+  System.out.println("IO Error:" + e.getMessage());
+}
+
+5. Write a program that read data from a binary file person.dat. (Please download the binary file from the Web site.) 
+Then, display the name, age and gender (M – Male, F – Female) in ascending order sort by name. 
+The structure of the binary file is as below:
+<intVariable-TotalNumberofRecord>
+<StringVariable-Name><IntVariable-Age><CharVariable-Gender>
+...
+
+int cnt;
+try{
+  ObjectInputStream inputStream = new ObjectInputStream (new FileInputStream("person.dat"));
+  cnt = inputStream.readInt();
+  String[] name = new String[cnt];
+  char[] gender = new char[cnt];
+  int[] age = new int[cnt];
+  try{
+    int i = 0;
+    while(true){
+      name[i] = inputStream.readUTF();
+      age[i] = inputStream.readInt();
+      gender[i] = inputStream.readChar();
+      i++;
+    }
+  } catch (EOFException e) { }
+  
+    String tempName;
+    int tempAge;
+    char tempGender;
+    
+    for(int pass = 1; pass<name.length; pass++){
+      for(int j = 0; j<name.length-1; j++){
+        if(name[j].compareToIgnoreCase(name[j+1])>0) {
+          tempName = name[j];
+          name[j] = name[j+1];
+          name[j+1] = tempName;
+          
+          tempGender = gender[j];
+          gender[j] = gender[j+1];
+          gender[j+1] = tempGender;
+          
+          tempAge = age[j];
+          age[j] = age[j+1];
+          age[j+1] = tempAge;
+        }
+      }
+      for(int k = 0; k<name.length; k++){
+        System.out.print("Name: " + name[k] + " Age: " +age[k] + "Gender: ");
+        if(gender[k] == 'M'){
+          System.out.println("Male");
+        else{
+          System.out.println("Female");
+        }
+      inputStream.close();
+  } catch(FileNotFoundException e){
+    System.out.println("File was not found");
+  } catch(IOException e){
+    System.out.println("Problem with file output");
+  }
+  
+  6. Write programs that MERGE DATA from two text files namely product.txt and order.txt. (Please download the text file from the Web site.)
+     The product.txt contains the ProductID, ProductName, ProductPrice separated by comma. 
+     The order.txt contains the OrderID, ProductID, OrderQuantiy separated by comma. 
+     You program will display the ProductID, ProductName, OrderQuantity, PricePerUnit and TotalPrice for each order. 
+     (You can use the String.split(), Integer.parseInt(String) and Double.parseDouble(String))
+     
+     
+  try{
+    System.out.println("ProductID\tProductName\tQuantity\tPricePerUnit\tTotal");
+    //Read file
+    Scanner input1 = new Scanner(new FileInputStream("order.txt"));
+    //Create array
+    String[] order, product;
+    //Initialize
+    String temp, productName="";
+    int quantity=0;
+    double price=0;
+    // While order.txt file still have content, take all line, and each line split by ",", convert ID to int type
+    while(input1.hasNextLine()){
+      temp = input1.nextLine();
+      order = temp.split(",");
+      quantity = Integer.parseInt(order[2]);
+      
+      Scanner input2 = new Scanner(new FileInputStream("product.txt"));
+      while(input2.hasNextLine()){
+        temp = input2.nextLine();
+        product = temp.split(",");
+        //if ID matched, take productName and price from product.txt
+        if(order[1].equals(product[0])){
+          productName = product[1];
+          price = Double.parseDouble(product[2]);
+          break;
+        }
+      }
+      input2.close();
+      System.out.printf("%-10s%-20s", order[1], productName);
+      System.out.printf("\t%-10d\t%7.2f\n", quantity, price, quantity*price);
+     }
+     input1.close();
+   } catch (FileNotFoundException e){
+    System.out.println("File was not found");
+   }
+         
+         
+       
+        
     
   
