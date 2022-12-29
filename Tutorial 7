@@ -39,6 +39,9 @@ try{
       Random g = new Random();
       for(int i =0; i<SIZE; i++){
       outputStream.writeInt(g.nextInt(MAX)); //BINARY FILE NO NEED SPECIFY SEPARATOR
+      outputStream.close();
+ }catch(IOException e){
+      System.out.println("Problem with file output.");
       
 d. Read from the binary file generated in a c. Display the all the integer and the average.
     
