@@ -1,0 +1,111 @@
+<Writing to Text File>
+import java.io.PrintWriter;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+try{
+  PrintWriter outputStream = new PrintWriter(new FileOutputStream("data.txt"));
+  ...
+  outputStream.close();
+} catch(IOException e){
+  System.out.println("Problem with file output");
+}
+
+- to write data: print, println, printf
+- to write to the file on a specified directory: 
+PrintWriter outputStream = new PrintWriter(new FileOutputStream("d:/sample/data.txt"));
+- to append(write to the end) to a text file
+PrintWriter outputStream = new PrintWriter(new FileOutputStream("d:/sample/data.txt", true));
+
+<Reading from Text File>
+
+>>SCANNER
+
+import java.util.Scanner;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+try{
+  Scanner inputStream = new Scanner(new FileInputStream("data.txt"));
+  ...
+  inputStream.close();
+} catch (FileNotFoundException e){
+  System.out.println("File was not found");
+}
+
+- to read data: nextInt, nextDouble, nextLine [int num = inputStream.nextInt();]
+- To check for END of text file: while(inputStream.hasNextLine())
+- to open file from a specified directory:
+Scanner inputStream = new Scanner(newFileInputStream("d:/sample/data.txt"));
+
+>> BUFFEREDREADER
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+try{
+  BufferedReader inputStream = new BufferedReader(new FileReader("data.txt"));
+  ...
+  inputStream.close();
+} catch (FileNotFoundException e){
+  System.out.println("File was not found");
+} catch (IOException e){
+  System.out.println("Error reading from file");
+}
+
+- to read data: read, readLine [String input = inputStream.readLine();]
+- To check for the END: while( (input=inputStream.readLine()) != null )
+- to open file from a specified DIRECTORY:
+BufferedReader inputStream = new BufferedReader( new FileReader("d:/sample/data.txt"));
+
+<File Class>
+- Methods to check properties of file
+1) .exists()
+2) .renameTo()
+3) .canRead()
+4) .canWrite()
+- Loaded: import java.io.File;
+
+File fileObject = new File("data.txt");
+
+if( fileObject.exists() ){
+  System.out.println("The file is alreaddy exists");
+  
+  fileObject.renameTo("data1.txt");
+}
+if( fileObject.canRead() )
+  System.out.println("The file is readable");
+if( fileObject.canWrite() )
+  System.out.println("The file is writable");
+  
+< Writing to Binary File >
+- To write value: writeInt, writeDouble, writeChar, writeBoolean
+- To write String object: writeUTF
+
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.FileOutputStream;
+
+try{
+  ObjectOutputStream outputStream = new ObjectOutputStream (new FileOutputStream("data.dat"));
+  ...
+  outputStream.close();
+} catch (IOException e){
+  System.out.println("Problem with file output.");
+}
+
+< Reading from Binary File >
+- To read value: readInt, readDouble, readChar, readBoolean
+- To read String object: readUTF
+
+import java.io.IOException;
+import java.io.FileNotFoundExceptionl
+import java.io.ObjectInputStreaml
+import java.io.FileOutputStream;
+
+try{
+  ObjectInputStream inputStream = new ObjectInputStream (new FileInputStream("data.dat"));
+  ...
+  inputStream.close();
+} 
