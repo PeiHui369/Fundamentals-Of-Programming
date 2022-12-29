@@ -97,6 +97,7 @@ String str = "Introduction to Java Programming!";
 byte[] bytes = str.getBytes(); //declare byte array
 try{
   PrintWriter outputStream = new PrintWriter(new FileOutputStream("data.txt"));
+  #
   for(byte b : bytes){ //b represent elements
     int val = b; //run for every character (I...n...t...)
     
@@ -108,6 +109,7 @@ try{
         outputStream.print("1");
       val <<=1; //left shift
     }
+    #
     
   }
   outputStream.close();
@@ -122,14 +124,16 @@ try{
   String temp, str1="";
   
   //Convert to string
+  #
   if(inputStream.hasNext()){
     temp = inputStream.next();
-    for(int i = 0; i<temp.length()/8; i++){#
-      int a = Integer.parseInt(temp.substring(8*i,(i+1)*8), 2); #
-      str1 += (char)(a);#
+    for(int i = 0; i<temp.length()/8; i++){
+      int a = Integer.parseInt(temp.substring(8*i,(i+1)*8), 2); 
+      str1 += (char)(a);
     }
     System.out.println(str1);
     }
+   #
     inputStream.close();
    }catch(FileNotFoundException e){
       System.out.println("File was not found");
