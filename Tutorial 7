@@ -1,0 +1,133 @@
+a. Store ten random integers within 0 to 1000 to a text file name integer.txt.
+
+try{
+  final int MAX = 1000, SIZE = 10;
+  PrintWriter outputStream = new PrintWriter(new FileOutput Stream("integer.txt")); //open text file, to write
+  Random g = new Random();
+  for(int i = 0; i<SIZE; i++)
+    outputStream.print(g.nextInt(MAX)+" "); //will be separated by " "
+  outputStream.close(); //closing text file
+  } catch(IOException e){ //input output exception, error when reading
+    System.out.println("Problem with file output");
+ }
+ // creating new file, no file new file exception
+ 
+ b. Read from the text file generated in a. Display all the integer and the largest integer.
+ 
+ int max = 0, num;
+ try{
+      Scanner inputStream = new Scanner(new FileInputStream ("integer.txt"));
+      System.out.println("The list of integer is ");
+      while(inputStream.hasNextInt()){
+        num = inputStream.nextInt();
+        System.out.print(num + " "_;
+        if(num>max)
+          max = num;
+     }
+     System.out.println();
+     System.out.println("The largest integer is" + max);
+     inputStream.close();
+     }catch (FileNotFoundException e){
+       System.out.println("File was not found");
+     }
+
+c. Store ten random integers within 0 to 1000 to a binary file name integer.dat.
+
+final int MAX = 1000, SIZE = 10;
+try{
+      ObjectOutputStream outputStream = new ObjectOutputStream( new FileOutputStream("integer.dat"))
+      Random g = new Random();
+      for(int i =0; i<SIZE; i++){
+      outputStream.writeInt(g.nextInt(MAX)); //BINARY FILE NO NEED SPECIFY SEPARATOR
+      
+d. Read from the binary file generated in a c. Display the all the integer and the average.
+    
+      int cnt=0, sum=0, num;
+      try{
+        ObjectInputStream inputStream = new ObjectInputStream(newFileInputStream("integer.dat"));
+        System.out.println("The list of integer is ");
+        
+        //as hasNext
+        try{
+          while(true){
+            num = inputStream.readInt();
+            cnt++;
+            sum+=num;
+            System.out.print(num+ " ");
+          }
+          
+        }catch (EOFException e){}
+         System.out.println();
+         System.out.printf("The average is %.2f\n", (double)sum/cnt);
+         inputStream.close();
+       }catch (FileNotFoundException e){
+        System.out.println("File was not found");
+       }catch(IOException e){
+        System.out.println("Problem with file output");
+       }
+
+QUESTION 2
+a. PrintWriter out = new PrintWriter(new FileOutputStream ("d:/data/matrix.txt"));
+b. 
+try {
+ PrintWriter out = new PrintWriter(new FileOutputStream("data.txt"));
+ out.close();
+}catch(IOException e){
+ System.out.println("Problem with file output");
+}
+c.
+int num;
+ObjectInputStream a= new ObjectInputStream(new FileInputStream("data.dat"));
+num = a.readInt();
+a.close();
+d.
+ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("data.dat"));
+o.writeChar('A');
+o.close();
+
+QUESTION 3
+3. Write a program that convert a sentence into binary number (ASCII code 8 bit) and 
+store it in a text file named data.txt. 
+Then, read from the text file and display the sentence.
+
+String str = "Introduction to Java Programming!";
+byte[] bytes = str.getBytes(); //declare byte array
+try{
+  PrintWriter outputStream = new PrintWriter(new FileOutputStream("data.txt"));
+  for(byte b : bytes){ //b represent elements
+    int val = b; //run for every character (I...n...t...)
+    
+    // Convert to binary
+    for(int i = 0; i<8; i++){//8 as 8-bits
+       if((val&128)==0)
+        outputStream.print("0");
+      else
+        outputStream.print("1");
+      val <<=1; //left shift
+    }
+    
+  }
+  outputStream.close();
+} catch(IOException e){
+  System.out.println("Problem with file output");
+}
+
+  System.out.print("The sentence is : ");
+  
+  try{
+  Scanner inputStream = new Scanner( new FileInputStream("data.txt"));
+  String temp, str1="";
+  
+  //Convert to string
+  if(inputStream.hasNext()){
+    temp = inputStream.next();
+    for(int i = 0; i<temp.length()/8; i++){#
+      int a = Integer.parseInt(temp.substring(8*i,(i+1)*8), 2); #
+      str1 += (char)(a);#
+    }
+    System.out.println(str1);
+    }
+    inputStream.close();
+   }catch(FileNotFoundException e){
+      System.out.println("File was not found");
+   }
