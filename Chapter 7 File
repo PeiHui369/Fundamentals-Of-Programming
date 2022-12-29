@@ -108,4 +108,14 @@ try{
   ObjectInputStream inputStream = new ObjectInputStream (new FileInputStream("data.dat"));
   ...
   inputStream.close();
-} 
+} catch (FileNotFoundException e){
+  System.out.println("File was not found");
+} catch (IOException e){
+  System.out.println("Problem with file input."); //writing
+}
+- to check for END 
+try{
+  while(true){
+    number = inputStream.readInt();
+  }
+} catch(EOFException e){}
