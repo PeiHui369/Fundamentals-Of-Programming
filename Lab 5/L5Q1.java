@@ -1,4 +1,40 @@
 import java.util.Arrays;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the number of student:");
+        int N = scanner.nextInt();
+        int[] score = new int[N];
+
+        Random random = new Random();
+        int sum=0;
+        for(int i=0; i<N; i++){
+            score[i]= random.nextInt(101);
+            sum+=score[i];
+        }
+
+        Arrays.sort(score);
+        System.out.println("List of score: "+Arrays.toString(score));
+        System.out.println("Lowest score: "+score[0]);
+        System.out.println("Highest score: "+score[N-1]);
+        System.out.println("Average score: "+ (sum/N));
+
+    }
+}
+
+>>
+Enter the number of student:
+10
+List of score: [8, 14, 20, 25, 29, 55, 73, 76, 80, 100]
+Lowest score: 8
+Highest score: 100
+Average score: 48
+==============================================================
+
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class L5Q1 {
