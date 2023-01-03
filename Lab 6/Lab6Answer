@@ -94,6 +94,25 @@ public static void main(String[] args){
         return Arrays.toString(revArr);
     }
 
+//Requested by question
+
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        System.out.println("Please enter a string of numbers: ");
+        String num = in.nextLine();
+        reverseStr(num);
+    }
+
+    static void reverseStr(String str){
+        char[] arr = str.toCharArray();
+        for(int i = arr.length-1; i>=0; i--){
+            System.out.print(arr[i]);
+        }
+    }
+}
 
 4. Write a Java method that implements Euclidean Algorithm to return the greatest common divisor of two positive integers. 
 Then, write a program to get the GCD for (24, 8) and (200, 625).
