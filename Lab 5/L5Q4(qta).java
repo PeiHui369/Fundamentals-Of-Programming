@@ -1,4 +1,35 @@
+public class Main {
 
+    public static void main(String[] args) {
+
+        int[][] matrix = {{1,5,7},{3,6,9},{5,3,8}};
+        int[][] matrix2 = new int [matrix.length][matrix[0].length];
+        
+        for(int i = 0, j = matrix.length-1; i < matrix.length; i++, j--) {
+                matrix2[0][j] = matrix[i][0];
+                matrix2[1][j] = matrix[i][1];
+                matrix2[2][j] = matrix[i][2];
+            }
+        
+        for(int i = 0; i <= matrix.length-1; i++){
+            for(int j = 0; j <= matrix[0].length-1; j++){
+                System.out.print(matrix[i][j] + " ");
+                if(j>0 && j%2 == 0){System.out.print("\n");}
+            }
+        }
+
+        for(int i = 0; i <= matrix2.length-1; i++){
+            for(int j = 0; j <= matrix2[0].length-1; j++){
+                System.out.print(matrix2[i][j] + " ");
+                if(j>0 && j%2 == 0){System.out.print("\n");}
+            }
+        }
+
+    }
+}
+
+
+===========================================================================
 public class L5Q4 {
 
     public static void main(String[] args) {
