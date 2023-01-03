@@ -36,11 +36,19 @@ public static void main(String[] args){
         for (int i=1;i<n;i++)
             System.out.print(c);
     }
+    c
+    cc
+    ccc
+    cccc
     
     static void multiPrintWithSpaces(int n, char c){
         for (int i=1;i<n;i++)
             System.out.print(c + " ");
     }
+    c 
+    c c
+    c c c
+    c c c c
     
     static void triangle(int n, char c){
         for(int i=1;i<=n;i++){      // loop to iterate for the given number of rows
@@ -49,6 +57,13 @@ public static void main(String[] args){
             System.out.println();
         }
     }
+  n=5
+  5-i+1
+  |     c    
+       c c
+      c c c
+     c c c c
+    c c c c c
     
     static void diamond(int n, char c){
         for(int i=1;i<=n;i++){
@@ -56,11 +71,24 @@ public static void main(String[] args){
             multiPrintWithSpaces(i, c);         
             System.out.println();
         } 
+  |     c    
+  |    c c
+  |   c c c
+  |  c c c c
+  | c c c c c
+        
         for (int i=1; i<n;i++){
             multiPrint(i + 1, ' ');
             multiPrintWithSpaces(n-i, c);
             System.out.println();
         }
+n=5
+i+1= 2,3,4,5
+n-i= 4,3,2,1
+  c c c c
+   c c c
+    c c
+     c
     }
 
 
@@ -134,6 +162,15 @@ Then, write a program to get the GCD for (24, 8) and (200, 625).
         if (b == 0) {return a;}
         else {return GCD(b, a%b);}
     };
+
+// 24 8
+GCD(24, 8) = GCD(8,24%8) = GCD(8,0) >> 8
+GCD = 8
+//200 625 (**How this auto change?)
+if(a>b){}
+GCD(625, 200) = GCD(200, 625%200)=GCD(200,25)
+GCD(200,25) = GCD(25, 200%25) = GCD(25,0) >> 25
+
 
 /* Long Method
     public static void xGCD(int a, int b){
@@ -260,7 +297,92 @@ public static void main(String[] args) {
         return isPrime(arg) && isPrime(reverse) && !isPalinPrime(arg);
     }
 
+/*
+import java.util.Scanner;
 
+public class Main{
+    public static void main(String[] args) {
+        System.out.println("Palindromic prime");
+        for(int arg=2, i=0; i<20 ; arg++){
+            if(isPalinPrime(arg)){
+                System.out.print(arg + " ");
+                i++;
+            }
+        }
+
+        System.out.println("\nEmirp");
+        for(int arg=2, i=0; i<20 ; arg++){
+            if(isEmirp(arg)){
+                System.out.print(arg + " ");
+                i++;
+            }
+        }
+
+        System.out.println();
+    }
+
+    public static boolean isPalinPrime(int arg) {
+        return isPalin(arg) && isPrime(arg);
+    }
+
+    public static boolean isPalin(int arg) {
+        int argCopy = arg;
+        int reverse = 0;
+
+        while(arg > 0) {
+            reverse = reverse * 10 + arg % 10;
+            arg /= 10;
+        }
+        /*
+        2:
+        reverse = 0 * 10 + 2%10 = 2
+        arg/=10 = 0
+        >> argCopy == 2
+
+        11:
+        reverse = 0*10 + 11%10 = 1
+        arg/= 10: 1
+        reverse = 1*10 + 1%10 = 11
+        >> argCopy == 11
+         */
+
+        return (argCopy == reverse);
+    }
+
+    public static boolean isPrime(int arg) {
+        for (int i = 2 ; i <= Math.sqrt(arg) ; i++){
+            if (arg % i == 0)
+                return false;
+        }
+        return true;
+    }
+
+    public static boolean isEmirp(int arg) {
+        int reverse = 0;
+        int argCopy = arg;
+
+        while(argCopy > 0){
+            reverse = reverse * 10 + argCopy % 10;
+            argCopy = argCopy / 10;
+        }
+
+        /*
+        13:
+        reverse = 0*10 + 13%10 = 3
+        argCopy = 13/10 = 1
+
+        reverse = 3*10 + 1%10 = 31
+         */
+        if (Integer.toString(arg).length() != Integer.toString(reverse).length()){
+            return false;
+        }
+        //System.out.printf("%d %d\n", arg, reverse);
+        return isPrime(arg) && isPrime(reverse) && !isPalinPrime(arg);
+    }
+
+        }
+        
+        */
 
 
 
