@@ -2,24 +2,25 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        int p1Score = 0, p2Score = 0, roll = 0;
+        int p1Score = 0, p2Score = 0, roll = 0, bonus = 0;
         boolean isP1Turn = true;
 
         while(Math.max(p1Score,p2Score)<=100){
             roll = (int)(Math.random()*(6)+1);
+            if(roll == 6){
+                bonus = (int)(Math.random()*(6)+1);
+            }
 
-            if(isP1Turn){ p1Score += roll; } else {p2Score += roll;}
+            if(isP1Turn){ p1Score += roll + bonus; } else {p2Score += roll + bonus;}
 
             System.out.printf("Player 1 Score: %d, Player 2 Score: %d\n", p1Score, p2Score);
 
             isP1Turn = !isP1Turn; //To take turns
         }
         System.out.printf("Player %d won!", p1Score > p2Score ? 1 : 2);
-
-        keyboard.close();
     }
-
 }
 
-/* If the person roll 6 then get another roll? */
+/* If the person roll 6 then get another roll? */ >> Solve by add "bonus"
 /* Math.random function */
+
