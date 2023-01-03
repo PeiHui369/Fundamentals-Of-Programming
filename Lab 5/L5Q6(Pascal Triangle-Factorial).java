@@ -1,3 +1,43 @@
+import java.util.Scanner;
+
+public class Main {
+    public int factorial(int i) {
+        if (i == 0)
+            return 1;
+        return i * factorial(i - 1);
+    }
+
+    public static void main(String[] args) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Enter the number of rows of Pascal Triangle to generate: ");
+        int n = keyboard.nextInt();
+
+        int i, j, k;
+        Main g = new Main();
+        for (i = 0; i < n; i++) {
+
+            for (j = 0; j <= i; j++) {
+                // nCr formula
+                System.out.print(g.factorial(i) / (g.factorial(i - j) * g.factorial(j)));
+            }
+            for (k = n - 1 - i ; k > 0; k--) {
+                System.out.print(0);
+            }
+            
+            // for newline
+            System.out.println();
+        }
+    }
+}
+
+>>
+100000
+110000
+121000
+133100
+146410
+15101051
+==============================================================================================
 import java.util.ArrayList;
 import java.util.Scanner;
 
