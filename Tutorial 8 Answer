@@ -125,5 +125,80 @@ public class coordinate{  //Class coordinate
   }
 }
 
-//Main method(Test program) missing
+//Main method(Test program) missing: object in Main
+objName.method();
 
+
+/*
+public class Main{
+  public static void main(String[] args){
+    
+  }
+}
+*/
+
+4. Create a class Payment that accept different type of payment methods such as cash
+payment, cheque payment and credit card payment. For cash payment, the class
+accepts the amount in cash; for cheque payment, the class accepts the amount and the
+cheque number; for credit card payment, the class accepts the amount, card holder
+name, cardType, expiration date and validation code. Use the same method name for
+the payment.
+
+public class Payment{
+  private double amount;
+  private String chequeNumber, cardHolderName, cardType;
+  private validationCode;
+}
+
+public void payBy(double a){
+  amount = a
+  System.out.println("Total pay by cash is " + amount);
+}
+
+public void payBy(double a, String c){
+  amount = a;
+  chequeNumber = c;
+  System.out.println("Total pay by cheque is " + amount);
+  System.out.println("Cheque number: " + chequeNumber);
+}
+
+public void payBy(double a, String c, String ct, int vc){
+  amount = a;
+  cardHolderName = c;
+  cardType = ct;
+  validationCode = vc;
+  
+  System.out.println("Total pay by credit card is " + amount);
+  System.out.println("Credit Card number: " + chequeNumber);
+  System.out.println("Card Type: " + cardType);
+  System.out.println("Validation Code: " + validationCode);
+}
+  
+  
+  // Not complete. not receive value from user. <Main>
+  
+  
+public class Connection{  //Class connection
+  private static int cnt = 0;   //Static instance variables
+  
+  public Connection(){    //Constructor
+    cnt++;
+  }
+  
+  public void disconnect(){ //Disconnect method
+    cnt--;
+  }
+  
+  public void display(){  //Display method
+    System.out.println("The number of connection is " + cnt);
+  }
+}
+
+//Connection obj = new Connection()
+the obj of the class is created in tester program (Main)
+
+<FINAL EXAM>
+***METHOD >> CLASS (Constructor, Instance variable, Object, Method) >> Mutator, Accessor
+- must know very well
+***ARRAY
+- LOGIC IMPORTANT (syntax not so important)
