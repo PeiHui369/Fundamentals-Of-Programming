@@ -1,0 +1,37 @@
+package javaapplication1;
+
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+
+
+public class JavaApplication1 {
+    public static void main(String[] args) throws Exception {
+        WeightCalculator a = new WeightCalculator(20, 160);
+        System.out.println(a);
+        
+    }
+}
+
+class WeightCalculator {
+    double age;
+    double height;
+    double recommendWeight;
+    
+    public WeightCalculator(double age, double height_cm){
+        this.age = age;
+        this.height = height_cm;
+        
+        this.recommendWeight = (height - 100 + age / 10) * (0.9f);
+    }
+    
+    @Override
+    public String toString(){
+        return String.format("Age: %.0f\nHeight: %.2fcm\nRecommendedWeight: %.2fkg\n", this.age, this.height, this.recommendWeight);
+    }
+    
+    
+}
