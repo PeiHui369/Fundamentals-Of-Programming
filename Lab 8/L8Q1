@@ -1,0 +1,128 @@
+1a
+package javaapplication1;
+
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+
+
+public class JavaApplication1 {
+    public static void main(String[] args) throws Exception {
+        Number a = new Number();
+        a.display();
+        Number b = new Number(5);
+        b.display();
+        Number c = new Number(4, 50);
+        c.display();
+        
+        System.out.println("=====");
+        a.displaySquares();
+    }
+}
+
+class Number {
+    static Random random = new Random();
+    int[] numbers;
+    int length;
+    public Number() {
+        init_numbers(10, 100);
+    }
+    
+    public Number(int length) {
+        init_numbers(length, 100);
+    }
+    
+    public Number(int length, int inclusiveUpperBound) {
+        init_numbers(length, inclusiveUpperBound);
+    }
+    
+    public void init_numbers(int length, int inclusiveUpperBound) {
+        this.numbers = new int[length];
+        this.length = length;
+        for (int i = 0; i < length; i++) {
+            this.numbers[i] = random.nextInt(inclusiveUpperBound + 1);
+        }
+    }
+    
+    public void display() {
+        for (int i = 0; i < this.length; i++) {
+            System.out.print(this.numbers[i] + " ");
+        }
+        System.out.println("");
+    }
+    
+    public void displayEven() {
+        for (int i = 0; i < this.length; i++) {
+            if(this.numbers[i] % 2 == 0){
+                System.out.print(this.numbers[i] + " ");
+            }
+        }
+        System.out.println("");
+    }
+    
+    public void displayPrime() {
+        for (int i = 0; i < this.length; i++) {
+            if(isPrime(this.numbers[i])){
+                System.out.print(this.numbers[i] + " ");
+            }
+        }
+        System.out.println("");
+    }
+    
+    public void displayMax() {
+        int max = -1;
+        for (int i = 0; i < this.length; i++) {
+            if(this.numbers[i] > max){
+                max = this.numbers[i];
+            }
+        }
+        System.out.println(max);
+    }
+    
+    public void displayMin() {
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < this.length; i++) {
+            if(this.numbers[i] < min){
+                min = this.numbers[i];
+            }
+        }
+        System.out.println(min);
+    }
+    
+    public void displayAvg() {
+        int sum = 0;
+        for (int i = 0; i < this.length; i++) {
+            sum += this.numbers[i];
+        }
+        System.out.println((double)sum / (double)this.length);
+    }
+    
+    public void displaySquares() {
+        for (int i = 0; i < this.length; i++) {
+            if(isSquare(this.numbers[i])){
+                System.out.print(this.numbers[i] + " ");
+            }
+        }
+        System.out.println("");
+    }
+    
+    public static boolean isPrime(int n) {
+        if (n < 2) {return false;}
+        for (int i = 2; i < n / 2; i++) {
+            if (n % i == 0){return false;}
+        }
+        return true;
+    }
+    
+    public static boolean isSquare(int n) {
+        if(n < 1){return false;}
+        double dn = (double)n;
+        double dsqrt_n = Math.pow(dn, 0.5);
+        
+        int sqrt_n = (int)dsqrt_n;
+        return sqrt_n * sqrt_n == n;
+    }
+}
