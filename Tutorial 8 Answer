@@ -1,27 +1,129 @@
-1. public class Student
-2. private String contactNumber;
-3. 
+1. Write statements for each of the following
+
+a. Define a class Student.
+public class Student
+
+b. Declare the instance variable that used to store contact number.
+private String contactNumber;
+
+c. Create the constructor that initializes the contact number to null.
 public Student(){
   contactNumber = null;
 }
-d.
+
+d. Create another constructor that assign the parameter value to the contact number.
 public Student(String c){
   contactNumber = c;
 }
-e.
+
+e. Create an accessor and mutator method for the contact number.
 public String getContactNumber(){ //accessor methods return the value of a private variable             
   return contactNumber;
 }
 public void setContactNumber(String c){ //mutator methods reset the value of a private variable
   contactNumber = c;
 }
-f.
+
+f. Create a method that used to display the contact number.
 public void output(){
   System.out.println("Contact Number: " + contactNumber_;
 }
-g.
+
+g. Create an object of the class Student.
+Student obj = new Student();
+
+h. Change the contact number using the mutator method.
+setContactNumber(999);
+
+i. Create an object of the class Animal.
 Animal obj  = new Animal();
-h.
+
+j. Create an object of the class Animal that used to represent a cat.
 Animal obj = new Animal("Cat");
-i.
+
+k. Create an object of the class Number with the value 20 and 40.
 Number obj = new Number(20,40);
+
+2. Write statements for each of the following
+a. Define a class Digit.
+b. Declare the instance variable that used to store a number.
+c. Create a constructor that assign the parameter value to the number.
+d. Create a digitMultiplication method that returns the multiplication of the
+number. If the number is 1345, the method will return 60.
+e. Create a method that used to display the digit multiplication of the number.
+f. Create a tester class that displays the digit multiplication of 4567.
+
+public class Digit{
+
+  private int num; //instance variable
+  
+  public Digit(int a){ //constructor
+    num = a;
+  }
+  
+public int digitmultiplication(){ //method
+  int a = num;
+  int ans = 1;
+  while(a>0){
+    ans *= a % 10; //multiply --> Initialize
+    a/=10;
+  }
+  return ans;
+}
+
+public void output(){ //method
+  System.out.println("The digit multiplication of : " +num+ " is " + digitmultiplication());
+  }
+}
+
+public class App{
+  public static void main(String[] args){
+  Digit a = new Digit(4567); //Create an object of class Digit
+  a.output(); //a is object, .method to Call method: output --> digitmultiplication 
+  }
+}
+
+3. Create a class that used to represent the 2 dimension coordinate system. 
+The class consists of constructors, instance variables, accessor and mutator method and an output method that display the x-coordinate and y-coordinate.
+
+public class coordinate{  //Class coordinate
+  private int x,y;        //Instance variables
+  
+// A constructor in Java is a special method that is used to initialize objects. [Constructor: Initialize]
+// The constructor is called when an object of a class is created. [Constructor: called when object of class created]
+// It can be used to set initial values for object attributes:
+
+  public coordinate(){ //Constructor
+    x=0;
+    y=0;
+  }
+  
+  public coordinate(int a, int b){ //Constructor
+    x = a;
+    y = b;
+  }
+  
+  //Have 2 to deal with x & y separately
+  public void setX(int a){  //Mutator: set a value
+    x = a;
+  }
+  
+  public void setY(int b){  //Mutator
+    y = b;
+  }
+  
+  public int getX(){  //Assessor method: return a value
+    return x;
+  }
+  
+  public int getY(){  //Assessor method
+      return y;
+  }
+  
+  public void output() { //Method
+    System.out.println("x-coordinate: " +x+ "y-coordinate: " +y);
+  }
+}
+
+//Main method(Test program) missing
+
