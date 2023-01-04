@@ -1,0 +1,27 @@
+1. public class Student
+2. private String contactNumber;
+3. 
+public Student(){
+  contactNumber = null;
+}
+d.
+public Student(String c){
+  contactNumber = c;
+}
+e.
+public String getContactNumber(){ //accessor methods return the value of a private variable             
+  return contactNumber;
+}
+public void setContactNumber(String c){ //mutator methods reset the value of a private variable
+  contactNumber = c;
+}
+f.
+public void output(){
+  System.out.println("Contact Number: " + contactNumber_;
+}
+g.
+Animal obj  = new Animal();
+h.
+Animal obj = new Animal("Cat");
+i.
+Number obj = new Number(20,40);
