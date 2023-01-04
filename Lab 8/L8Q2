@@ -1,0 +1,61 @@
+package javaapplication1;
+
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+
+
+public class JavaApplication1 {
+    public static void main(String[] args) throws Exception {
+        BankAccount a = new BankAccount("Ali", "0123", "P123", 1000);
+        a.displayBalance();
+        a.deposit(1000);
+        a.displayBalance();
+        a.withdraw(500);
+        a.displayBalance();
+        a.withdraw(3000000);
+        a.displayBalance();
+    }
+}
+
+class BankAccount {
+    String name;
+    String IC;
+    String passportNumber;
+    int balance_cents;
+    
+    public BankAccount(String name, String IC, String passportNumber, int balance_cents){
+        this.name = name;
+        this.IC = IC;
+        this.passportNumber = passportNumber;
+        this.balance_cents = balance_cents;
+    }
+    
+    public void displayBalance() {
+        System.out.printf("%s(%s)[%s]\nBalance: $%d.%02d\n",
+                this.name,
+                this.IC,
+                this.passportNumber,
+                this.balance_cents/100,
+                this.balance_cents%100
+        );
+    }
+    
+    public void deposit(int amount_cents) {
+        this.balance_cents += amount_cents;
+    }
+    
+    public void withdraw(int amount_cents) {
+        if(this.balance_cents >= amount_cents){
+            this.balance_cents -= amount_cents;
+        } else {
+            System.out.println("You too poor la!");
+        }
+    }
+}
+
+
+
