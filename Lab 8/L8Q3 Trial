@@ -1,0 +1,46 @@
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        WeightCalculator user = new WeightCalculator();
+        user.input();
+        user.calculator();
+        user.displayData();
+    }
+}
+class WeightCalculator{
+    static double height;
+    static double recommendWeight;
+    static int age;
+
+    public static void input()
+    {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter your height: ");
+        height = scanner.nextDouble();
+        System.out.println("Enter your age: ");
+        age = scanner.nextInt();
+
+    }
+
+
+    public static void calculator(){
+        recommendWeight = ((height - 100 + age)/10) * 0.9;
+    }
+
+    public static void displayData(){
+        System.out.println("User's age: "+ age);
+        System.out.println("User's height: "+ height);
+        System.out.println("Recommend weight: "+recommendWeight);
+    }
+}
+
+
+>>
+Enter your height: 
+158
+Enter your age: 
+20
+User's age: 20
+User's height: 158.0
+Recommend weight: 54.0
