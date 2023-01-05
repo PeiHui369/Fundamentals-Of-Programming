@@ -1,0 +1,145 @@
+Define a class name Number. 
+The class is used to handle an integer array. 
+The class Number will display all the item of the array, the even number, the prime number, the maximum number, the minimum number, the average, the square number. 
+Create a Tester class to test the program. 
+Number a = new Number() // generate 10 random integers within 0 to 100. 
+Number b = new Number(5) // generate 5 random integers within 0 to 100. 
+Number c = new Number(4, 50) // generate 4 random integers within 0 to 50.
+
+================================================================================
+
+import java.util.Random;
+
+public class Main{
+    public static void main(String[] args)throws Exception{
+        Number a = new Number();
+        a.display();
+        Number b = new Number(5);
+        b.display();
+        Number c = new Number(4, 50);
+        c.display();
+        
+        System.out.println("=====");
+        a.displaySquares();
+    }
+}
+
+class Number {//Define a class name Number
+    static Random random = new Random (); //static --> share at all classes
+
+    //Initialize
+    int[] numbers;
+    int length;
+
+    public Number() {
+        init_numbers(10,100);
+    }
+
+    public Number(int length){
+        init_numbers(length,100);
+    }
+
+    public Number(int length, int inclusiveUpperBound){
+        init_numbers(length,inclusiveUpperBound);
+    }
+
+    public void init_numbers(int length, int inclusiveUpperBound) {
+        //this. refers to the current object in a method or constructor
+        this.numbers = new int[length]; //create array
+        this.length = length;
+
+        //To save all generated elements in numbers array
+        for (int i = 0; i<length; i++){
+            this.numbers[i] = random.nextInt(inclusiveUpperBound+1);
+        }
+    }
+
+    //Method basically repeat:
+    /*
+    for(int i = 0; i<this.length; i++){ //#display
+            if(condition){
+            System.out.print(this.numbers[i] + " ");
+            }
+        }
+        System.out.println(" ");
+     */
+
+    public void display(){
+        for(int i = 0; i<this.length; i++){ //#
+            System.out.print(this.numbers[i] + " ");
+        }
+        System.out.println(" ");
+    }
+
+    public void displayEven(){
+            for(int i = 0; i<this.length; i++){
+                if(this.numbers[i]%2 ==0){ //#
+                    System.out.print(this.numbers[i] + " ");
+                }
+            }
+    }
+
+    public void displayPrime(){
+            for(int i = 0; i<this.length; i++){
+                if(isPrime(this.numbers[i])){
+                    System.out.print(this.numbers[i] + " ");
+                }
+            }
+    }
+
+    //To check Prime
+    public static boolean isPrime(int n){
+        if(n<2){return false;}
+        for(int i = 2; i<n/2; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void displayMax(){
+        int max = -1; //#
+        for(int i = 0; i<this.length; i++){
+            if(this.numbers[i]>max){ //#
+                max = this.numbers[i]; //#
+            }
+        }
+        System.out.println(max);
+    }
+
+    public void displayMin(){
+        int min = Integer.MAX_VALUE; //#
+        for(int i = 0; i < this.length; i++){
+            if(this.numbers[i] < min){
+                min = this.numbers[i];            }
+        }
+        System.out.println(min);
+    }
+
+    public void displayAvg(){
+        int sum = 0;
+        for (int i = 0; i < this.length; i++){
+            sum += this.numbers[i];
+        }
+        System.out.println((double)sum/(double)this.length);
+    }
+
+    public void displaySquares(){
+        for(int i = 0; i < this.length; i++){
+            if(isSquare(this.numbers[i])){
+                System.out.print(this.numbers[i] + " ");
+            }
+        }
+        System.out.println("");
+    }
+
+    public static boolean isSquare(int n){
+        if(n<1){return false;}
+        double dn = (double)n;
+        double dsqrt_n = Math.pow(dn, 0.5);
+
+        int sqrt_n = (int) dsqrt_n;
+        return sqrt_n * sqrt_n == n;
+    }
+}
