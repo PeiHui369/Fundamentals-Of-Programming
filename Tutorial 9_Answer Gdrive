@@ -1,0 +1,116 @@
+1. Write statements for each of the following
+a. Write a static method compare that return true if two objects parameter (Student s, Teacher t) are belongs to the same class. Otherwise return false.
+
+public static boolean compare(Student s, Teacher t){
+	return s.getClass() == t.getClass();
+}
+
+//The getClass method can be used to check the class of an object.
+
+
+b. Write a static method isClass that return true if the object parameter (Student s) is belong to any descendent class of Person. Otherwise return false.
+public static boolean isClass(Student s){
+	return s instanceof Person;
+}
+
+2. Define a class Organism. The class contains the initial size of the organism and the growth rate. Create a constructor to initialize the instance variables. Then, define a class Animal. Animal is an organism that has extra instance variable which is the amount of eating need. Create a constructor to initialize the instance variable and a method to display the Animal instance variables.
+
+	public class Organism{
+		protected double size;
+		protected double growthRate;
+		
+		public Organism(double size, double growthRate){
+			this.size = size;
+			this.growthRate = growthRate;
+		}
+	}
+
+	public class Animal extends Organism{
+		private double eatAmount;
+
+		public Animal(double size, double growthRate, double eatAmount){
+			super(size, growthRate);
+			this.eatAmount = eatAmount;
+		}
+
+		public String toString(){
+return “Animal ” +  “\nSize : ” + size + “\nGrowth Rate : ” + growthRate + “\nAmount of eating needed : ” + eatAmount ;
+		}
+	}
+
+3. Define a class PaySystem. The class consists of the payrate per hour and the number
+of hours. The class also contains a method to return the total pay for a given amount
+of hours and a method to display the total payment. Derive a class RegularPay from
+PaySystem that has a constructor and did not override any base methods. Derived a
+class SpecialPay from PaySystem that override the base method and return the total
+pay plus 30% commission.
+
+public class PaySystem{
+	protected double payrate;
+	protected int hours;
+	
+	public double getTotalPay(double payrate, int hours){
+		double totalPay = hours * payrate;
+		return totalPay;
+	}
+	
+	public void printTotalPay(){
+		System.out.println(“The total pay is: ” +getTotalPay(payrate, hours));
+	}
+}
+
+public class RegularPay extends PaySystem{
+	public RegularPay(){
+		
+	}
+}
+
+public class SpecialPay extends PaySystem{
+	public double totalPay(double payrate, int hours){
+		double totalPay = hours * payrate;
+		return totalPay = totalPay *1.3;
+	}
+
+	public void printTotalPay(){
+		System.out.println(“The total pay is : ” + getTotalPay(payrate, hours));
+	}
+}
+
+
+4. Define a class PurchaseSystem. The class consists of product code, unit price, quantity and total price. Besides the class consists of a method to compute the total price and a display method. Derived a class SugarPurchase from PurchaseSystem. This new class add a sugar weight attributed and override the method to compute the total price as unit price * quantity* sugar weight.
+
+public class PurchaseSystem{
+	protected String productCode;
+	protected double unitPrice;
+	protected int quantity;
+
+	public PurchaseSystem(String productCode, double unitPrice, int quantity){
+		this.productCode = productCode;
+		this.unitPrice = unitPrice;
+		this.quantity = quantity;
+	}
+	public double getTotalPrice(){
+		double totalPrice = unitPrice * quantity;
+		return totalPrice;
+	}
+	
+	public void printTotalPrice(){
+		System.out.println(“The total price is : ” + getTotalPrice());
+	}
+}
+
+public class SugarPurchase extends PurchaseSystem{
+	private double sugarWeight;
+	
+	public SugarPurchase(String productCode, double unitPrice, int quantity, double sugarWeight){
+		super(productCode, unitPrice, quantity);
+		this.sugarWeight = sugarWeight;
+	}
+	
+	@Override
+	public double getTotalPrice(){
+		double totalPrice = unitPrice * quantity * sugarWeight;
+		return totalPrice;
+	}
+}
+
