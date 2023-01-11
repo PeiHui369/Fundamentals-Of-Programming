@@ -1,0 +1,133 @@
+1. Write statements for each of the following
+a. Write a static method compare that return true if two objects parameter
+
+public static boolean compare(Student s, Teacher t){
+	if( s.getClass() == t.getClass())
+    return true;
+  else
+    return false;
+}
+//The getClass method can be used to check the class of an object.
+
+
+b. Write a static method isClass that return true if the object parameter (Student s) is belong to any descendent class of Person. Otherwise return false.
+public static boolean isClass(Student s){
+	if (s instanceof Person)
+    return true;
+  else
+    return false;
+}
+
+2. Define a class Organism. The class contains the initial size of the organism and the growth rate. 
+Create a constructor to initialize the instance variables. 
+Then, define a class Animal. 
+Animal is an organism that has extra instance variable which is the amount of eating need. 
+Create a constructor to initialize the instance variable and a method to display the Animal instance variables.
+
+public class Organism{                    //Class
+  protected double size, rate;            //Protected modifier can be used to allow access for its own class and derived class. ((If private, derived class cannot access
+  
+  public Organism (double a, double b){   //Constructor: use same name as class; has parameters for initialization
+    size = a;
+    rate = b;
+  }
+}
+
+public class Animal extends Organism {//extends: inherits || class animal derived from organism
+  private double eating;              // extra instance variable ((only Animal can access, private
+  
+  public Animal (double a, double b, double c){   //Constructor
+    super(a,b);                                   //a is size, b is rate
+    eating = c;
+  }
+  
+  public void display(){                          //method to display
+    System.out.println("Initial size of the organism: " + size);
+    System.out.println("Growth Rate: " + rate);
+    System.out.println("Eating requirement: " + eating);
+  }
+}
+
+//Class --> Instance Variable --> Constructor
+
+3. Define a class PaySystem. 
+The class consists of the payrate per hour and the number of hours. 
+The class also contains a method to return the total pay for a given amount of hours and a method to display the total payment. 
+Derive a class RegularPay from PaySystem that has a constructor and did not override any base methods. 
+Derived a class SpecialPay from PaySystem that override the base method and return the total pay plus 30% commission.
+
+public class PaySystem{                                 //class
+  private double hour, payrate;                         //instance variables
+  
+  public PaySystem(double h, double r){                 //Constructor
+    hour = h;
+    payrate = r;
+  }
+  
+  public double getPay(){ //Method to return
+    return hour*payrate;
+  }
+}
+
+public class RegularPay extends PaySystem {             //derived class
+  
+  public RegularPay(double h, double r){                //did not override
+    super(h,r);
+  }
+}
+
+public class SpecialPay extends PaySystem{
+  public SpecialPay(double h, double r){
+    super(h,r);
+  }
+  
+  //Override the base method and return the total pay plus 30% commission
+  public double getPay(){
+    return super.getPay()*1.3;
+  }
+}
+
+4. Define a class PurchaseSystem. 
+The class consists of product code, unit price, quantity and total price. 
+Besides the class consists of a method to compute the total price and a display method. 
+Derived a class SugarPurchase from PurchaseSystem. 
+This new class add a sugar weight attributed and override the method to compute the total price as unit price * quantity* sugar weight.
+
+public class PurchaseSystem{  //class
+  private double unitPrice;   //instance variables
+  private int quantity;
+  private String productCode;
+  protected double totalPrice;
+  
+  public PurchaseSystem(String pc, double p, int q){ //Constructor
+    productCode = pc;
+    unitPrice = p;
+    quantity = q;
+  }
+  
+  public void compute(){  //method
+    totalPrice = unitPrice * quantity;
+  }
+  
+  public void display(){//method
+    System.out.println("Product Code: " + productCode);
+    System.out.println("Quantity " + quantity);
+    System.out.println("Unit Price: " + unitPrice);
+    System.out.println("Total Price: " + totalPrice);
+  }
+}
+
+public class SugarPurchase extends Purchase System{
+  
+  private double weight;  //instance variable
+  
+  public SugarPurchase(String pc, double p, int q, double w){ //Constructor
+    super(pc, p, q);
+    weight = w;
+  }
+
+  public void compute(){  //method
+    super.compute();
+    totalPrice *= weight;
+  }
+}
