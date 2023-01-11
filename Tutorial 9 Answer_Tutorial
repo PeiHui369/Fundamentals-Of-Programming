@@ -1,5 +1,33 @@
+/*
+- To get class of object parameter (Object1 a)
+a.getClass();
+
+- Is object parameter (Object1 a) belong to any descendent class of Q
+if(a instanceOf Q)
+
+- Defining instance variables
+public class Parent{
+	protected Type a,b; //Instance variable
+	
+	public Parent (Type c, Type d){	//Constructor
+		a = c;
+		b = d;
+	}
+}
+public class Child extends Parent{ //Child inherits Parent
+	private Type varName; //extra instance variables
+	
+	public Child(Type c, Type d, Type e){	//Constructor
+		super(c,d); 			//If directly get value from parent class
+		varName = e;
+}
+
+- If Child class did not redefine method in Parent class, then override does not happen
+
+*/
+
 1. Write statements for each of the following
-a. Write a static method compare that return true if two objects parameter
+a. Write a static method compare that return true if two objects parameter (Student s, Teacher t) are belongs to the same class. Otherwise return false.
 
 public static boolean compare(Student s, Teacher t){
 	if( s.getClass() == t.getClass())
