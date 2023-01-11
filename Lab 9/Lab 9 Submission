@@ -1,0 +1,70 @@
+public class Main{
+    public static void main(String[] args){
+        Shape shape = new Shape ("Rectangle", 12.00, 144.12);
+        shape.display();
+    }
+}
+
+class Shape{
+    protected String name;
+    protected double perimeter;
+    protected double area;
+
+    public Shape(String s, double p, double a){
+        this.name = s;
+        this.perimeter = p;
+        this.area = a;
+    }
+
+    public double getPerimeter(){
+        return this.perimeter;
+    }
+
+    public double getArea(){
+        return this.area;
+    }
+
+    public void setPerimeter(double p){
+        this.perimeter = p;
+    }
+
+    public void setArea(double a){
+        this.area = a;
+    }
+
+    public void display(){
+        System.out.println("Name of the shape: " +this.name);
+        System.out.printf("Perimeter: %.2f", this.perimeter);
+        System.out.printf("\nArea: %.2f",this.area);
+    }
+}
+
+class Rectangle extends Shape{
+    private double sideLength1, sideLength2;
+
+    public Rectangle(double sideLength1, double sideLength2) throws Exception{
+        this.name = super(name);
+        this.sideLength1 = sideLength1;
+        this.sideLength2 = sideLength2;
+    }
+
+    public double AreaCalculator() throws Exception{}
+        this.area = this.sideLength1 * this.sideLength2;
+}
+
+class Square extends Shape{
+    private double sideLength1, sideLength2;
+
+
+}
+
+class Circle extends Shape{
+    private double diameter;
+
+    public Circle(String s, double diameter){
+        super(name);
+        this.diameter = diameter;
+    }
+
+
+}
