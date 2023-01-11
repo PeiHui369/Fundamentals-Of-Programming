@@ -1,3 +1,8 @@
+Define a class Game. 
+The class has a constructor that accept player name. 
+Besides, the class contains a method move that roll the dice. 
+Create a Tester class to test the program with two players and the player that reach 100 or more win the game.
+
 package javaapplication1;
 
 import java.io.*;
