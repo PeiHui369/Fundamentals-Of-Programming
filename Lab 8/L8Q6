@@ -1,0 +1,57 @@
+You operate several burger stalls distributed throughout town. Each burger stall has an ID and the number of burger sold for the day. 
+The class consists of a constructor to initialize the instance variables and a sold method that increment the number of burger sold by parameter value. 
+The class also contains a variable and method that tracks the total number of burgers sold in all stalls. 
+Display the total burger sold by each stall and the total number of burgers sold in all stalls. 
+
+package javaapplication1;
+
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+
+
+public class JavaApplication1 {
+    public static void main(String[] args) throws Exception {
+        BurgerStall a = new BurgerStall(new String[]{"Alice", "Bob"});
+        a.sold("Alice", 10);
+        a.sold("Bob", 15);
+        a.displaySold();
+        a.sold("Alice", 10);
+        a.sold("Bob", 15);
+        a.displaySold();
+        a.sold("Alice", 12);
+        a.sold("Bob", 15);
+        a.displaySold();
+    }
+}
+
+class BurgerStall {
+    String[] stallID;
+    int[] burgersSold;
+    
+    public BurgerStall(String[] stallID){
+        this.stallID = stallID;
+        this.burgersSold = new int[stallID.length];
+    }
+    
+    public void sold(String stallID, int burgersSold){
+        for (int i = 0; i < this.stallID.length; i++) {
+            if (this.stallID[i].equals(stallID)){
+                this.burgersSold[i] += burgersSold;
+                break;
+            }
+        }
+    }
+    
+    public void displaySold(){
+        int totalBurgersSold = 0;
+        for (int i = 0; i < this.stallID.length; i++) {
+            totalBurgersSold += this.burgersSold[i];
+            System.out.printf("Store %s sold %d burgers\n", this.stallID[i], this.burgersSold[i]);
+        }
+        System.out.println("Total Burgers sold: " + totalBurgersSold + " burgers");
+    }
+}
