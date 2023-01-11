@@ -1,0 +1,84 @@
+7. Define class money. 
+The class is used to calculate the number of note and coins for a given amount of money. 
+The available notes are RM100, RM50, RM10, RM5 and RM1. 
+The available coins are 50cent, 20cent, 10cent and 5 cent. 
+The class needs to round up the amount according to the table below. 
+The class also contains addition and subtraction method to add or subtract two objects. 
+
+package javaapplication1;
+
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+
+
+public class JavaApplication1 {
+    public static void main(String[] args) throws Exception {
+        Money a = new Money(10, 11);
+        Money b = new Money(10, 12);
+        Money c = new Money(10, 13);
+        Money d = new Money(10, 14);
+        Money e = new Money(10, 15);
+        Money f = new Money(10, 16);
+        Money g = new Money(10, 17);
+        Money h = new Money(10, 18);
+        Money i = new Money(10, 19);
+        
+        System.out.println(a);
+        System.out.println(b);
+        System.out.println(c);
+        System.out.println(d);
+        System.out.println(e);
+        System.out.println(f);
+        System.out.println(g);
+        System.out.println(h);
+        System.out.println(i);
+        
+        Money foo = new Money(10, 80);
+        Money bar = new Money(20, 80);
+        System.out.println(foo);
+        foo.add(bar);
+        System.out.println(foo);
+        foo.subtract(bar);
+        System.out.println(foo);
+    }
+}
+
+class Money {
+    int cents;
+    
+    public Money(int cents){
+        this.cents = cents;
+        this.round();
+    }
+    
+    public Money(int ringgit, int cents){
+        this.cents = ringgit * 100 + cents;
+        this.round();
+    }
+    
+    private void round() {
+        int base = (this.cents / 5) * 5;
+        int remainder = this.cents % 5;
+        this.cents = base;
+        if (remainder >= 3) {
+            this.cents += 5;
+        }
+    }
+    
+    @Override
+    public String toString(){
+        return String.format("RM%d.%02d", this.cents/100, this.cents%100);
+    }
+    
+    public void subtract(Money other) {
+        this.cents -= other.cents;
+    }
+    
+    public void add(Money other) {
+        this.cents += other.cents;
+    }
+}
