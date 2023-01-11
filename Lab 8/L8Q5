@@ -1,0 +1,70 @@
+package javaapplication1;
+
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+
+
+public class JavaApplication1 {
+    public static void main(String[] args) throws Exception {
+        Game a = new Game("Alice", "Bob");
+        a.play();
+    }
+}
+
+class Game {
+    String player1Name;
+    String player2Name;
+    
+    int player1score;
+    int player2score;
+    
+    static Random random = new Random();
+    
+    public Game(String player1Name, String player2Name) {
+        this.player1Name = player1Name;
+        this.player2Name = player2Name;
+        
+        this.player1score = 0;
+        this.player2score = 0;
+    }
+    
+    public void play(){
+        for (int i = 0; i < 220; i++) {
+            if (i % 2 == 1) { // Player 1 Turn
+                int roll = this.diceRoll();
+                this.player1score += roll;
+                System.out.printf("%s rolled %d\n", this.player1Name, roll);
+            } else { // Player 2 Turn
+                int roll = this.diceRoll();
+                this.player2score += roll;
+                System.out.printf("%s rolled %d\n", this.player2Name, roll);
+            }
+            System.out.printf("Current Score - %s:%d %s:%d\n\n", this.player1Name, this.player1score, this.player2Name, this.player2score);
+            if(this.gameOver()){
+                break;
+            }
+        }
+    }
+    
+    private int diceRoll() {
+        return this.random.nextInt(6) + 1;
+    }
+    
+    private boolean gameOver(){
+        boolean player1win = this.player1score >= 100;
+        boolean player2win = this.player2score >= 100;
+        
+        if (player1win) {
+            System.out.printf("%s has won!", this.player1Name);
+        }
+        if (player2win) {
+            System.out.printf("%s has won!", this.player2Name);
+        }
+        
+        return player1win || player2win;
+    }
+}
