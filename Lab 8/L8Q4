@@ -1,62 +1,75 @@
-public class Main{
-    public static void main(String []args) throws Exception{
-        Fraction a = new Fraction (2,4);
-        System.out.println(a);
-        a.set_denominator(6);
+package javaapplication1;
 
+import java.io.*;
+import java.util.*;
+import java.util.Scanner;
+import java.net.URL;
+import java.io.InputStream;
+import java.net.URLConnection;
+
+
+public class JavaApplication1 {
+    public static void main(String[] args) throws Exception {
+        Fraction a = new Fraction(100, 400);
+         System.out.println(a);
+        a.set_denominator(600);
+        
         System.out.println(a);
         System.out.println(a.get_numerator() + "/" + a.get_denominator());
-
+        
         a.display_lowest_term();
+        
     }
 }
 
-class Fraction{ //Fraction denominator cannot be zero
+class Fraction {
     private int numerator;
     private int denominator;
-
-    public Fraction(int numerator, int denominator) throws Exception{ //Constructor
-        if(denominator==0){
+    
+    public Fraction(int numerator, int denominator) throws Exception {
+        if(denominator == 0) {
             throw new Exception("Fraction cannot have denominator of 0");
         }
         this.numerator = numerator;
         this.denominator = denominator;
     }
-
-    public void set_numerator(int numerator){
+    
+    public void set_numerator(int numerator) {
         this.numerator = numerator;
     }
-
+    
     public void set_denominator(int denominator) throws Exception{
-        if(denominator==0){
+        if(denominator == 0) {
             throw new Exception("Fraction cannot have denominator of 0");
         }
         this.denominator = denominator;
     }
-
+    
     public int get_denominator(){
         return this.denominator;
     }
-
+    
     public int get_numerator(){
         return this.numerator;
     }
-
+    
     public void display_lowest_term(){
-        int common_gcd = gcd(this.numerator,this.denominator);
+        int common_gcd = gcd(this.numerator, this.denominator);
         System.out.println(this.numerator/common_gcd + "/" + this.denominator/common_gcd);
     }
-
-    private int gcd(int a, int b){
-        if(b == 0){
+    
+    private int gcd(int a, int b) {
+        if (b == 0) {
             return a;
-        }else{
+        } else {
             return gcd(b, a % b);
         }
     }
-
+    
     @Override
     public String toString(){
         return String.format("%d/%d", this.numerator, this.denominator);
     }
+    
+    
 }
