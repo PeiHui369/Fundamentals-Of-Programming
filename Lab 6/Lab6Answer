@@ -9,7 +9,7 @@ public static void main(String[] args) {
         int curTriangleNumber = 0;
         
         for (int j = 1; j <= 20; j++) {
-            curTriangleNumber += j;
+            curTriangleNumber += j;             #
             
             System.out.println(curTriangleNumber);
         }
@@ -116,7 +116,7 @@ public static void main(String[] args){
         int[] revArr = new int[array.length];
         
         for(int j = 0; j < array.length; j++){
-            revArr[array.length - 1 - j] = array[j];
+            revArr[array.length - 1 - j] = array[j];    #
         }
         
         return Arrays.toString(revArr);
@@ -135,8 +135,8 @@ public class Main {
     }
 
     static void reverseStr(String str){
-        char[] arr = str.toCharArray();
-        for(int i = arr.length-1; i>=0; i--){
+        char[] arr = str.toCharArray();                 #
+        for(int i = arr.length-1; i>=0; i--){           #
             System.out.print(arr[i]);
         }
     }
@@ -258,11 +258,11 @@ public static void main(String[] args) {
         System.out.println();
     }
     
-    public static boolean isPalinPrime(int arg) {
+    public static boolean isPalinPrime(int arg) {          #PALINDROMIC PRIME     
         return isPalin(arg) && isPrime(arg);
     }
     
-    public static boolean isPalin(int arg) {
+    public static boolean isPalin(int arg) {                 #PALINDROM
         int argCopy = arg;
         int reverse = 0;
 
@@ -274,7 +274,7 @@ public static void main(String[] args) {
         return (argCopy == reverse);
     }
     
-    public static boolean isPrime(int arg) {
+    public static boolean isPrime(int arg) {                    #PRIME
         for (int i = 2 ; i <= Math.sqrt(arg) ; i++){
             if (arg % i == 0) 
                 return false;
@@ -282,7 +282,7 @@ public static void main(String[] args) {
         return true;
     }
     
-    public static boolean isEmirp(int arg) {
+    public static boolean isEmirp(int arg) {                     #EMIRP
         int reverse = 0;
         int argCopy = arg;
         
