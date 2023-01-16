@@ -24,8 +24,8 @@ class Game{
         this.player1Name = player1Name;
         this.player2Name = player2Name;
 
-        this.player1Score = player1Score;
-        this.player2Score = player2Score;
+        this.player1Score = 0;
+        this.player2Score = 0;
     }
 
     public void play(){
