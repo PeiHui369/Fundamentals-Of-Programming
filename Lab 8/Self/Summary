@@ -1,0 +1,178 @@
+L8Q1
+//this. refers to the current object in a method or constructor
+//To call method: objName.method(); //object.method();
+//Method basically repeat:
+    /*
+    for(int i = 0; i<this.length; i++){ //#display
+            if(condition){
+            System.out.print(this.numbers[i] + " ");
+            }
+        }
+        System.out.println(" ");
+     */
+---
+
+int[] numbers;                          //#Initialize array without knowing size
+static Random random = new Random();    //static --> Share at all classes
+for(int i = 0; i<this.length; i++){     //DISPLAY
+ if(this.numbers[i]%2 ==0){             //Even: n%2 == 0
+int max = -1;                           //MAX
+int min = Integer.MAX_VALUE;            //MIN
+sum += this.numbers[i]; >> sum/length   //AVERAGE
+
+
+ //PRIME  : n<2 false; n%i == 0 false (i=2; i<n/2)
+ if(n<2){return false;}
+        for(int i = 2; i<n/2; i++) {                        //Prime: i=2 >> (n%i == 0) false >> i<n/2
+            if (n % i == 0) { return false;}                //Prime
+ 
+ //SQUARE : n<1 false; Math.pow(n, 0.5) * Math.pow(n, 0.5) == n
+  if(n<1){return false;}
+        double dn = (double)n;
+        double dsqrt_n = Math.pow(dn, 0.5);
+
+        int sqrt_n = (int) dsqrt_n;
+        return sqrt_n * sqrt_n == n;
+        
+=====================================
+L8Q2
+
+className objName = new className (parameters follow Constructor in the class);   //When creating object
+
+Constructor:
+public className(Type x){
+this.x = x; }
+---
+ //always use acc.displayBalance() to show the changes in balance after deposit/withdraw
+ //#balance in int
+ 
+ /*Constructor*/ //Information for open acc: name, IC, passportNumber, balance
+    public BankAccount(String name, String IC, String passportNumber, int balance_inCents){}
+    
+=================================
+L8Q3
+
+//Initialize variable (before & outside methods) >> can be use in all classes
+
+//To display output:
+ @Override
+    public String toString(){
+        return String.format("Age: %.0f\nHeight: %.2fcm\nRecommendedWeight: %.2fkg\n", this.age, this.height, this.recommendWeight);
+    }
+ 
+ ===============================================
+ L8Q4
+ 
+ /*Input method that accepts value from user*/ : CONSTRUCTOR
+ 
+ /*Accessor(Get) Method*/
+ public type getX() {return this.X;}
+ 
+ /*Mutator(Set) Method*/
+ public type setX(type X) {this.X = X;}
+ 
+ //with parameters or not: method(){}
+ //remember return type: int
+
+/*Display Fraction reduced to lowest term*/
+    private int gcd(int a, int b){
+        if(b==0){return a;}                       //GCD
+        else{return gcd(b,a%b);}                  //GCD
+    }
+
+    public void lowest_term(){
+        int common_gcd = gcd(this.numerator, this.denominator);
+        System.out.printf("%d/%d",(this.numerator/common_gcd),(this.denominator/common_gcd)); //#
+    }
+    
+==============================
+L8Q5
+
+//Use this. to access methods (use methods in other method)
+// Use this. to access variables (use variables in other method)
+
+game.play(); //As play method accessed all other methods for the game, we only need to call it
+this.random.nextInt(6) + 1; //start from 1, count up 6 until 7 exclusive
+if(i%2 != 0){//ODD: Player1 Turns} else { //EVEN: Player2 Turns }
+
+==============================
+L8Q6
+
+//Constructor: 
+String[] stallID;
+    int[] burgerSold;
+
+    public BurgerStall (String[] stallID){
+        this.stallID = stallID;
+        this.burgerSold = new int[stallID.length]; //Array length same as stallID Array
+    }
+//To initialize the object with parameter array (follow constructor)
+BurgerStall burgerstall = new BurgerStall (new String[] {"a","b"}); 
+
+public void totalSold() {int totalSold = 0;} //Must initialize this var in its method
+
+ for(int i = 0; i<this.stallID.length; i++){ //To loop
+ 
+ //EACH SOLD
+ if(this.stallID[i].equals(stallID)){
+                this.burgerSold[i] += burgersSold;
+                break;
+                }
+                
+ //TOTAL SOLD 
+ for(int i = 0; i<this.stallID.length; i++) {
+            totalSold += this.burgerSold[i];
+            //Display each sold
+            System.out.printf("Store %s sold %d burgers \n", this.stallID[i], this.burgerSold[i]);
+            }
+      //Display total sold
+      System.out.println("Total Burgers sold: " + totalSold + " burgers");
+      }
+      
+==================================================
+L8Q7
+
+//Convert cents to RM
+@Override
+    public String toString(){
+        return String.format("RM%d.%02d", this.cents/100, this.cents%100);
+    }
+
+// .11 & .12 >> .10 || .13, .17 >> .15 || .18, .19 >> .20 
+ private void round(){
+        int base = (this.cents/5)*5;
+        int remainder = this.cents % 5;
+        this.cents = base;
+        if(remainder >= 3){
+            this.cents += 5;
+        }
+    }
+
+//ALWAYS convert money related to CENTS
+this.cents = ringgit * 100 + cents
+this.cents/100, this.cents%100
+===========================================
+QTA
+
+Common:
+When to use this. ?
+Why cannot 2 public class? When use which access modifier for class, method, instance var? Static? 
+
+L8Q2: 
+Why printf format wrong? (Cannot convert balance_inCents by /100 and %100)
+
+L8Q5: 
+Why need this.player1Score = 0 in constructor? (also for player2Score)
+
+L8Q6: 
+How is the constructor related to instance variable? (Specific this ques only, as include array)
+Array parameters?
+
+L8Q7: 
+Why need to call this.round() in constructor?
+How the round method works?
+Why is the parameters (money other) ? How is it formatted?
+  public void subtraction(money other) {
+        this.cents = this.cents - other.cents;
+    }
+
