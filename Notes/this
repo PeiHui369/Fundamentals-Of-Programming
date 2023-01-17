@@ -1,0 +1,43 @@
+Refers to the current object (object that the method currently in)
+
+/*
+<Dog.java>
+private type name; //Instance variable: then use get & set method for other class to access & mutate
+
+public void setName(String name){
+  this.name = name;
+}
+
+<WhatIsThis.java main>
+Dog myDog = new Dog();                //create object: myDog
+myDog.setName("Kramer");              //"this" is refer to myDog
+System.out.println(myDog.getName());  // >>Kramer
+
+OR
+//Constructor
+public Dog(String name, int age){
+  this.name = name;
+  this.age = age;
+}
+
+
+@ Static: X use this.
+- can be used outside the context of any particular object of that class
+- can call a static method like "printStuff()" on the class itself without needing any particular object
+
+@ To create object without taking parameter// Default value
+<Dog.java>
+public Dog(){             
+  this("nameVal",ageVal); //Will call constructor & create object //has to be the very first call (First line): java avoid using the object before actually created it
+}
+
+//Constructor
+public Dog(String name, int age){
+  this.name = name;
+  this.age = age;
+}
+
+<WhatIsThis.java main>
+Dog myDog = new Dog();
+System.out.println(myDog.getName()); //Without setting first
+>> nameVal //Default value
