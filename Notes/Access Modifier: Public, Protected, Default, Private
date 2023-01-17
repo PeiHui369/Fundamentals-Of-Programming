@@ -1,0 +1,95 @@
+1. Default == Give access to everything inside the package == like Public 
+public class A{
+  int hours = 3;
+}
+
+public class B{
+  A objName = new A();
+  System.out.println(objName.hours); // >>3
+}
+
+2. Public == Give access to everything inside and outside the package
+public class A{
+  public int hours = 3;
+}
+
+public class B{
+  A objName = new A();
+  System.out.println(objName.hours); // >>3
+}
+
+3. Private
+public class A{
+  int hours = 3;
+}
+
+public class B{
+  A objName = new A();
+  System.out.println(objName.); //Don't see hours(to choose from) after the .
+}
+
+4. Protected: 
+- Same package can access
+package p1;
+public class A{
+  public int hours = 3;
+}
+
+package p1;
+public class B{
+  A objName = new A();
+  System.out.println(objName.hours); // >>3
+}
+
+- Diff package can access if related: extends
+package p1;
+public class A{
+  public int hours = 3;
+}
+
+package p2;
+public class B extends A{     //B is subclass of A
+  A objName = new A();
+  System.out.println(objName.hours); // >>ERROR
+  
+  B objName = new B()
+  System.out.println(objName.hours); // >>3
+}
+
+package2.B;
+public class C{
+  A objName = new A();
+  System.out.println(objName.hours); //>>3
+  
+  B objName = new B();
+  System.out.println(objName.hours);  //>>3
+}
+
+                       (living in same house)
+                         me        brother      neighbour    stranger
+                      | Class | Same Package |  Subclass  |   World  |
+pen     PUBLIC        |   Y   |       Y      |      Y     |     Y    |
+bike    PROTECTED     |   Y   |       Y      |      Y     |     Y    |
+tv      DEFAULT       |   Y   |       Y      |      N     |     N    |
+phone   PRIVATE       |   Y   |       N      |      N     |     N    |
+
+
+- Java Class: Never private & protected
+- In Java file: at most 1 public class present (but any number of default class will present)
+- public Class: java file name must same as class name, it is compulsary
+- default class: file name should not same as class name
+- class name: according standard of java, class name start with capital letter
+
+public class A {
+  public static void main (String[] args){
+    System.out.println("A");
+    B.callB(); //#call other class: otherClassName.otherClassMethod();
+   }
+}
+
+class B{
+  public static void callB(){
+    System.out.println("B");
+  }
+}
+
