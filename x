@@ -2,7 +2,6 @@ class Delivery{
     public String sender;
     public String recipient;
     public double weight_of_package_kg;
-    public double totalShippingCost;
 
     public Delivery(String sender, String recipient, double weight_of_package_kg){
         this.sender = sender;
@@ -12,20 +11,20 @@ class Delivery{
 
     public double totalCost(){
 
-        if(this.weight_of_package_kg <= 5){
-            return weight_of_package_kg * 280;
-        }else if(this.weight_of_package_kg >5 && this.weight_of_package_kg <=20){
-            return weight_of_package_kg * 520;
-        }else if(this.weight_of_package_kg >20 && this.weight_of_package_kg <=50){
-            return weight_of_package_kg * 700;
+        if(this.weight_of_package_kg <= 5.00){
+            return weight_of_package_kg * 2.80;
+        }else if(this.weight_of_package_kg <=20){
+            return weight_of_package_kg * 5.20;
+        }else if(this.weight_of_package_kg <=50){
+            return weight_of_package_kg * 7.00;
         }else if(this.weight_of_package_kg>50) {
-            return weight_of_package_kg * 860;
+            return weight_of_package_kg * 8.60;
         }
         return 0;
     }
 
     public String toString(){
-        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: RM %d.%02d\n", this.sender, this.recipient, this.weight_of_package_kg,(int)this.totalCost()%100, (int)this.totalCost()/100);
+        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: RM %.2f\n", this.sender, this.recipient, this.weight_of_package_kg,this.totalCost());
     }
 }
 
@@ -38,21 +37,20 @@ class SpecialDelivery extends Delivery{
         super(sender, recipient, weight_of_package_kg);
         this.weekendDelivery = weekendDelivery;
         this.nightTimeDelivery = nightTimeDelivery;
-
     }
 
 
 
     public double totalCost(){
-        if(this.weekendDelivery & this.nightTimeDelivery){return (super.totalCost() + 5000) *1.20;}
-        else if(this.weekendDelivery){ return super.totalCost() + 5000;}
+        if(this.weekendDelivery & this.nightTimeDelivery){return (super.totalCost() + 50.00) * 1.20;}
+        else if(this.weekendDelivery){ return super.totalCost() + 50.00;}
         else if(this.nightTimeDelivery){return super.totalCost() * 1.2;}
         return 0;
     }
 
     @Override
     public String toString(){
-        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: RM %d.%02d\n", this.sender, this.recipient, this.weight_of_package_kg,(int)this.totalCost()%100, (int)this.totalCost()/100);
+        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: RM %.2f\n%s\n%s", this.sender, this.recipient, this.weight_of_package_kg,this.totalCost(), weekendDelivery?"weekendDelivery":"",nightTimeDelivery?"nightTimeDelivery":"");
     }
 
 }
