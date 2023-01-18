@@ -11,25 +11,21 @@ class Delivery{
     }
 
     public double totalCost(){
-        int n;
+
         if(this.weight_of_package_kg <= 5){
-            n = 280;
-            this.totalShippingCost = weight_of_package_kg * n;
+            return weight_of_package_kg * 280;
         }else if(this.weight_of_package_kg >5 && this.weight_of_package_kg <=20){
-            n = 520;
-            this.totalShippingCost = weight_of_package_kg * n;
+            return weight_of_package_kg * 520;
         }else if(this.weight_of_package_kg >20 && this.weight_of_package_kg <=50){
-            n = 700;
-            this.totalShippingCost = weight_of_package_kg * n;
+            return weight_of_package_kg * 700;
         }else if(this.weight_of_package_kg>50) {
-            n = 860;
-            this.totalShippingCost = weight_of_package_kg * n;
+            return weight_of_package_kg * 860;
         }
-        return this.totalShippingCost;
+        return 0;
     }
 
     public String toString(){
-        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: RM %d.%02d\n", this.sender, this.recipient, this.weight_of_package_kg,(int)this.totalShippingCost%100, (int)this.totalShippingCost/100);
+        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: RM %d.%02d\n", this.sender, this.recipient, this.weight_of_package_kg,(int)this.totalCost()%100, (int)this.totalCost()/100);
     }
 }
 
@@ -48,15 +44,15 @@ class SpecialDelivery extends Delivery{
 
 
     public double totalCost(){
-        if(this.weekendDelivery & this.nightTimeDelivery){return (super.totalCost() + 500) *1.20;}
-        else if(this.weekendDelivery){ return super.totalCost() + 500;}
-        else if(this.nightTimeDelivery){return super.totalCost() * 1.20;}
+        if(this.weekendDelivery & this.nightTimeDelivery){return (super.totalCost() + 5000) *1.20;}
+        else if(this.weekendDelivery){ return super.totalCost() + 5000;}
+        else if(this.nightTimeDelivery){return super.totalCost() * 1.2;}
         return 0;
     }
 
     @Override
     public String toString(){
-        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: %.2f\n", this.sender, this.recipient, this.weight_of_package_kg,this.totalCost());
+        return String.format("Sender: %s To:%s\nWeight of package: %.1fkg\nShipping Cost: RM %d.%02d\n", this.sender, this.recipient, this.weight_of_package_kg,(int)this.totalCost()%100, (int)this.totalCost()/100);
     }
 
 }
@@ -81,25 +77,3 @@ public class LabTest{
         System.out.println("The total shipping cost is RM " +total);
     }
 }
-
->>
-"C:\Program Files\Java\jdk-19\bin\java.exe" "-javaagent:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.2\lib\idea_rt.jar=57898:C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2022.2.2\bin" -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 -classpath C:\Users\User\IdeaProjects\w3exercise\out\production\w3exercise LabTest
-Sender: Ali To:Ahmad
-Weight of package: 4.4kg
-Shipping Cost: RM 0.00
-
-Sender: Ah Chong To:Fatimah
-Weight of package: 63.1kg
-Shipping Cost: RM 0.00
-
-Sender: FSKTM, UM To:FK,UM
-Weight of package: 32.5kg
-Shipping Cost: 23250.00
-
-Sender: Ang To:Liew
-Weight of package: 19.0kg
-Shipping Cost: 12456.00
-
-The total shipping cost is RM 91204.0
-
-Process finished with exit code 0
