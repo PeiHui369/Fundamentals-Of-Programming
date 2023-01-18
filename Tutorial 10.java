@@ -60,7 +60,20 @@ public static void main(String[] args){
   OtherDiscount b = new OtherDiscount();
   System.out.println("Item Cost: " + cost);
   System.out.println("Quantity: "+ cnt);
-  
-  ...
+  System.out.println("Bulk Discount: " + a.computeDiscount(cnt, cost));
+  System.out.println("Other Discount: " + b.computeDiscount(cnt,cost));
+  CombineDiscount c = new CombineDiscount(a,b);
+  System.out.println("Combine Discount: " + c.computeDiscount(cnt,cost));
+}
+
+2.
+public interface Internet{
+  public double computeInternet();
+}
+
+public class SavingAccount implements Internet{
+  private double balance;
+  public SavingAccount(double a){balance = a;}
+  private 
   
   
