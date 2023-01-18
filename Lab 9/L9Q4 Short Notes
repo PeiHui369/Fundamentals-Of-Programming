@@ -1,0 +1,50 @@
+Create a Dice game. 
+
+The first dice game allows the player to roll two dices each time. 
+If both dice is equal, the player can roll again. 
+The player score each time they roll the dices. 
+Player that reaches 100 points or more wins the game. 
+
+The second dice game allows the player to roll one dice each time. 
+When the dice is 6, the player can roll one more time. 
+However, if the player rolls 6 again in second attempt, the player won’t have any score. 
+Player that reaches 100 point wins the game. 
+If the player scores more than 100, the last score is not counted and the player needs to roll again in next turn. 
+
+Create a Tester class to test the program
+
+====================================================
+1. Create 
+class DiceGame{
+instance var: Player player1,  player2; int round; //access modifier: Private
+constructor for player1 & player 2
+start() method
+isWin() method
+
+2. abstract class Player{
+instance var : score, name
+Player()
+Player(String a)
+display()
+getScore()
+setScore(int score)
+getName()
+setName(String name)
+roll();
+
+3. class PlayerGame1 extends Player{
+instance var: dice1, dice2, Random
+PlayerGame1(String a)
+roll(){ roll 2, if same, roll again }
+
+4. class PlayerGame2 extends Player
+instance var: dice1, Random
+PlayerGame2 (String a)
+roll() { roll 1, if is 6 roll again and plus score, if 6 again score not count;}
+
+5. class Tester{
+PlayerGame1 player1 = new PlayerGame1("name"); //Create object
+- repeat for player2 -
+DiceGame game1 = new DiceGame(player1, player2);
+game1.start();
+- repeat for player3 & player4 for game2 - 
