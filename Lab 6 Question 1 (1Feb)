@@ -1,0 +1,27 @@
+//Reverse digits of all ele in arr 
+import java.util.*;
+
+public class w3{
+    public static void main (String[] args) {
+        Scanner sc = new Scanner (System.in);
+        int[] arr = new int [10];
+        for(int i = 0; i<10; i++){                        //Accept 10 input
+            System.out.println("Enter num: ");
+            arr[i] = sc.nextInt();
+        }
+        for(int i = 0; i<10; i++){                        //Print each element while call method reverse
+            System.out.print(reverse(arr[i]) + " ");
+        }
+    }
+
+    static int reverse (int n){
+        String s = Integer.toString(n);                   //Convert ele to string
+        String str = "";
+        for(int i = s.length()-1; i>=0; i--){             //Print string backward and save to new string 
+            str += s.charAt(i);
+        }
+        return Integer.parseInt(str);                     //Convert string to int
+    }
+}
+
+
