@@ -1,0 +1,130 @@
+1a & 1b.
+import java.io.*;
+import java.util.Random;
+import java.util.Scanner;
+
+public class w3{
+    public static void main(String[] args){
+        Random random = new Random();
+        try {
+            PrintWriter writeToTextFile = new PrintWriter(new FileOutputStream("integer.txt"));
+            for(int i = 0; i < 10; i++){
+                writeToTextFile.println(random.nextInt(1001));
+            }
+            writeToTextFile.close();
+        }catch(IOException e){
+            System.out.println("Problem with file output.");
+        }
+
+        int max = 0;
+        try{
+            Scanner sc = new Scanner(new FileInputStream("integer.txt"));
+            while(sc.hasNextLine()){
+                int num = sc.nextInt();
+                if(num > max){max = num;}
+                System.out.print(num + " ");
+                sc.nextLine();
+            }
+            System.out.println("\nThe largest number is " + max);
+            sc.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+1c & 1d.
+import java.io.*;
+import java.util.Random;
+
+public class w3{
+    public static void main(String[] args){
+        Random random = new Random();
+        try{
+            ObjectOutputStream writingtoBinaryFile = new ObjectOutputStream(new FileOutputStream("integer.dat"));
+            for(int i = 0; i<10; i++){
+                int num = random.nextInt(1000);
+                writingtoBinaryFile.writeUTF(num + "\n");
+                writingtoBinaryFile.writeChars("\n"); //Chars: str value
+            }
+            writingtoBinaryFile.close();
+        }catch(IOException e){
+            System.out.println("Problem with file output.");
+        }
+
+        double sum = 0;
+        double average = 0;
+        try{
+            ObjectInputStream readingBinaryFile = new ObjectInputStream(new FileInputStream("integer.dat"));
+            for(int i = 0; i<10; i++){
+                sum += readingBinaryFile.readInt();
+            }
+            readingBinaryFile.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        average = sum/10;
+        System.out.println("Sum: "+sum+ "\nAverage: " +average);
+    }
+}
+
+3.
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class w3{
+    public static void main(String[] args){
+        try{
+            PrintWriter writingTextFile = new PrintWriter(new FileOutputStream("data.txt"));
+            String sentence = "hi";
+            String ascii = "";
+            for(int i = 0; i<sentence.length(); i++){
+                char letter = sentence.charAt(i);
+                ascii += String.format("%08d",Integer.parseInt(Integer.toBinaryString(letter)));
+            }
+
+            writingTextFile.print(ascii);
+            writingTextFile.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        try{
+            Scanner readingTextFile = new Scanner(new FileInputStream("data.txt"));
+            int code = 0;
+            String num = "";
+            while(readingTextFile.hasNextLine()){
+                num+=readingTextFile.next();
+            }
+
+            System.out.println(num);
+            String wholeSentence = "";
+            for(int i = 0; i<num.length(); i+=8) {
+                code = 0;
+                for(int j = i, z = 7; j<i+8; j++, z--){
+                    code+=Integer.parseInt(String.valueOf(num.charAt(j))) * Math.pow(2, z);
+                }
+                char print = (char)code;
+                wholeSentence += print;
+            }
+
+            System.out.println(wholeSentence);
+
+            readingTextFile.close();
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+//Convert sentence into binary num (ASCII code 8 bit)
+// Store in file name data.txt
+// Read from text file
+// Display sentence
