@@ -1,0 +1,131 @@
+Q3
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.util.Scanner;
+
+public class Main{
+    public static String reversed(String str){
+        String s = "";
+        for(int i = str.length()-1; i>str.length(); i++){
+            s+=str.substring(i,i+1);
+        }
+        return s;
+    }
+    public static void main (String[] args){
+        try{
+            Scanner readingTextFile = new Scanner(new FileInputStream("data1.txt"));
+            PrintWriter writingTextFile = new PrintWriter(new FileOutputStream("reversed.txt"));
+
+            while(readingTextFile.hasNextLine()) {
+                String temp = readingTextFile.nextLine();           //read from oriTextFile
+                String reversed = "";
+                for (int i = temp.length() - 1; i >= 0; i--) {      //each line, store char backwards into string
+                    reversed += temp.charAt(i);
+                }
+                writingTextFile.write(reversed + "\n"); //write to newTextFile
+            }
+            readingTextFile.close();
+            writingTextFile.close();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
+
+Q4
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
+public class Main{
+    public static void main (String[] args){
+        int countLine = 0, countWord = 0, countChar = 0;
+        try{
+            Scanner readingTextFile = new Scanner(new FileInputStream("count.txt"));
+            while(readingTextFile.hasNextLine()){
+                String temp = readingTextFile.nextLine();
+                countLine++;
+                String[] word = temp.split(" ");
+                countWord += word.length;
+                char[] chars = temp.toCharArray();
+                countChar += chars.length;
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println(countLine);
+        System.out.println(countWord);
+        System.out.println(countChar);
+    }
+}
+
+Q5 https://github.com/onghengkiat/Sem1-FOP/blob/main/LabQuestion/Lab7/src/L7Q5.java
+//Why this cannot be sort?
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main{
+    public static void main (String[] args){
+        String[] nameArr;
+        int[] ageArr;
+        char[] genderArr;
+        int[] indexArr;
+        int num = 0; //start reading from first line: total number of record
+        boolean sortable = true;
+
+        try{
+            ObjectInputStream readingBinaryFile = new ObjectInputStream(new FileInputStream("person.dat.dat"));
+            //read the first line: total no. of record -> length of array
+            num = readingBinaryFile.readInt();
+            nameArr = new String[num];
+            ageArr = new int[num];
+            genderArr = new char[num];
+            indexArr = new int [num];
+
+            for(int i = 0; i<num; i++){ //read all line
+                nameArr[i] = readingBinaryFile.readUTF();
+                ageArr[i] = readingBinaryFile.readInt();
+                genderArr[i] = readingBinaryFile.readChar();
+            }
+            readingBinaryFile.close();
+
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        //sort in ascending by NAME
+        for(int i = 0; i<indexArr.length; i++){
+            indexArr[i] = i;
+        }
+
+        while(sortable){
+            sortable = false;
+
+            for(int i = 0 ; i< indexArr.length-1; i++){
+                if(nameArr[indexArr[i]].compareTo(nameArr[indexArr[i+1]]) > 0){
+                    int temp = indexArr[i];
+                    indexArr[i] = indexArr[i+1];
+                    indexArr[i+1] = temp;
+                }
+            }
+        }
+        System.out.println(Arrays.toString(indexArr));
+        for(int i = 0; i< indexArr.length; i++){
+            System.out.printf("%-20s %-3d %s \n", nameArr[indexArr[i]], ageArr[indexArr[i]], genderArr[indexArr[i]]);
+        }
+    }
+}
+
+//Explain Q1,Q2,Q5,Q6
+
+
+
+
