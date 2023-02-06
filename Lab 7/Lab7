@@ -1,0 +1,43 @@
+@L7Q6
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.LinkedHashMap;
+import java.util.Scanner;
+
+public class Main{
+    public static void main (String[] args){
+        String line;
+        String[] lineContent;
+        try{
+            Scanner readingProductFile = new Scanner(new FileInputStream("C:\\Users\\User\\Videos\\Lab07\\product.txt"));
+            Scanner readingOrderFile = new Scanner(new FileInputStream("C:\\Users\\User\\Videos\\Lab07\\order.txt"));
+
+            LinkedHashMap<String, String> productID = new LinkedHashMap<>();
+            LinkedHashMap<String, Integer> orderQuantity = new LinkedHashMap<>();
+            LinkedHashMap<String, Double> pricePerUnit = new LinkedHashMap<>();
+            LinkedHashMap<String, String> orderProduct = new LinkedHashMap<>();
+
+            while(readingProductFile.hasNextLine()){
+                line = readingProductFile.nextLine();
+                lineContent = line.split(",");
+                productID.put(lineContent[0], lineContent[1]);
+                pricePerUnit.put(lineContent[0], Double.valueOf(lineContent[2]));
+            }
+
+            while(readingOrderFile.hasNextLine()){
+                line = readingOrderFile.nextLine();
+                lineContent = line.split(",");
+                orderProduct.put(lineContent[0], lineContent[1]);
+                orderQuantity.put(lineContent[1], Integer.valueOf(lineContent[2]));
+            }
+
+
+            System.out.println("ProductID        ProductName        Quantity        PricePerUnit        Total");
+            for(String order : orderProduct.keySet()){
+                System.out.printf("%-10s%-28s%2d%22.2f%15.2f\n", orderProduct.get(order), productID.get(orderProduct.get(order)), orderQuantity.get(orderProduct.get(order)), pricePerUnit.get(orderProduct.get(order)), (double)(pricePerUnit.get(orderProduct.get(order)) * orderQuantity.get(orderProduct.get(order))));
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+    }
+}
