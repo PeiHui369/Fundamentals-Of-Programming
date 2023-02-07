@@ -1,0 +1,183 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main{
+    public static void main (String[] args){
+
+        String line = "";
+        String[] lineArr = null;
+
+        //Getting date range input, put in format
+        Scanner userInput = new Scanner(System.in);
+        System.out.println("Please enter the time range (2022-06-01 to 2022-12-16): ");
+        String dateInput = userInput.nextLine();
+        String[] dateArr = dateInput.split("to");
+
+        DateTimeFormatter dateTimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        LocalDate startDate = LocalDate.parse(dateArr[0].trim(), dateTimeFormat);
+        LocalDate endDate = LocalDate.parse(dateArr[1].trim(), dateTimeFormat);
+
+        ArrayList <String> dateList = new ArrayList<String>();
+        for(LocalDate date = startDate; date.isBefore(endDate.plusDays(1));date = date.plusDays(1)){
+            String dateString = date.format(dateTimeFormat);
+            dateList.add(dateString);
+        }
+
+        int numOfJobCreated = 0;
+        int numOfJobEnded = 0;
+        try {
+            Scanner sc = new Scanner(new FileInputStream("C:\\\\UM\\\\Fundamental of programming\\\\extracted_log"));
+            while(sc.hasNextLine()){
+                line = sc.nextLine();
+                lineArr = line.split(" ");
+                if(dateList.contains(lineArr[0].substring(1,11)) && lineArr.length > 3){
+                    if(lineArr[2].equals("Allocate")){numOfJobCreated++;}
+                    if(lineArr[3].equals("done")){numOfJobEnded++;}
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println(numOfJobCreated + " " + numOfJobEnded);
+    }
+
+}
+
+@ Number of jobs by partition
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Main{
+    public static void main (String[] args){
+
+        String line = "";
+        String[] lineArr = null;
+
+        int gpu_v100s = 0;
+        int cpu_opteron = 0;
+        int gpu_k10 = 0;
+        int gpu_titan = 0;
+        int gpu_k40c = 0;
+        int cpu_epyc = 0;
+
+        String[] typeArr = {"gpu_v100s", "cpu_opteron", "gpu_k10", "gpu_titan", "gpu_k40c", "cpu_epyc"};
+        ArrayList<String> typePartition = new ArrayList<String>();
+
+        for(int i = 0; i<typeArr.length; i++) {
+            typePartition.add(typeArr[i]);
+        }
+
+        try {
+            Scanner sc = new Scanner(new FileInputStream("C:\\\\UM\\\\Fundamental of programming\\\\extracted_log"));
+            while(sc.hasNextLine()) {
+                line = sc.nextLine();
+                lineArr = line.split(" ");
+                if (lineArr.length >= 7 && lineArr[6].length() > 10) {
+                    String type = lineArr[6].substring(10);
+                    if (type.equals("gpu-v100s")) {
+                            gpu_v100s++;
+                    }
+                    if (type.equals("cpu-opteron")) {
+                        cpu_opteron++;
+                    }
+                    if (type.equals("gpu-k10")) {
+                        gpu_k10++;
+                    }
+                    if (type.equals("gpu-titan")) {
+                        gpu_titan++;
+                    }
+                    if (type.equals("gpu-k40c")) {
+                        gpu_k40c++;
+                    }
+                    if (type.equals("cpu-epyc")) {
+                        cpu_epyc++;
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+        System.out.println("gpu-v100s: " + gpu_v100s);
+        System.out.println("gpu-k10: " + gpu_k10);
+        System.out.println("gpu-titan: " + gpu_titan);
+        System.out.println("gpu-k40c: " + gpu_k40c);
+        System.out.println("cpu-opteron: " + cpu_opteron);
+        System.out.println("cpu-epyc: " + cpu_epyc);
+
+
+
+    }
+
+}
+
+@ Number of jobs causing error & corresponding user
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class Main{
+    public static void main (String[] args){
+
+        String line = "";
+        String[] lineArr = null;
+
+        HashMap<String, Integer> userError = new HashMap<String, Integer>();
+
+        int count = 1 ;
+        int num = 0;
+        int total = 0;
+        try {
+            Scanner sc = new Scanner(new FileInputStream("C:\\\\UM\\\\Fundamental of programming\\\\extracted_log"));
+            while(sc.hasNextLine()) {
+                line = sc.nextLine();
+                lineArr = line.split(" ");
+                if(lineArr[1].equals("error:") && lineArr.length>5 && lineArr[5].length()>7){
+                    count = 1;
+                    String name = lineArr[5].substring(6,lineArr[5].length()-2);
+                    try {
+                        Integer.parseInt(name);
+                    }catch(NumberFormatException e){
+
+                        if (name.length() < 3 || name.charAt(0) == '=') {
+                            continue;
+                        } else {
+                            total++;
+
+                            if (userError.containsKey(name)) {
+                                num = userError.get(name);
+                                num++;
+                                userError.put(name, num);
+                            } else {
+                                num = count;
+                                userError.put(name, num);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+
+       for(String user : userError.keySet()){
+           System.out.println(user + ": " + userError.get(user));
+       }
+
+System.out.println(total);
+
+    }
+
+}
