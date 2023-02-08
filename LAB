@@ -1,3 +1,164 @@
+LAB 4 Q 4
+public class Main{
+    public static void main (String[] args){
+        int [][] arr = {{1,5,7}, {3,6,9}, {5,3,8}};
+        int [][] rotate = new int[arr.length][arr[0].length];
+
+        for(int i = 0, j=arr.length-1; i<arr.length; i++,j--){
+            rotate[0][j] = arr[i][0];
+            rotate[1][j] = arr[i][1];
+            rotate[2][j] = arr[i][2];
+        }
+
+        for(int x = 0; x< rotate.length;x++){
+            for(int y = 0; y<rotate[0].length;y++){
+                System.out.print(rotate[x][y] + " ");
+            }
+            System.out.println();
+        }
+    }
+}
+
+LAB 5 Q 5
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Random;
+import java.util.Scanner;
+
+import static java.util.Arrays.*;
+
+public class Main{
+    static Random random = new Random();
+
+    public static void main(String[] args) {
+        int[] num = new int[20];
+        for (int i = 0; i < num.length; i++) {
+            num[i] = random.nextInt(101);
+            checkRepeat(num, i);
+        }
+
+        System.out.println("List: ");
+        bubbleSortAscending(num);
+        System.out.println(Arrays.toString(num));
+
+        System.out.println("In descending order: ");
+        bubbleSortDescending(num);
+        System.out.println(Arrays.toString(num));
+
+        bubbleSortAscending(num);
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter a number to search: ");
+        int n = sc.nextInt();
+
+        linearSearch(num, n);
+        binarySearch(num, n);
+    }
+
+    public static void linearSearch(int[] arr, int toFind){
+        int loop = 0;
+        int position = -1;
+        for(int i = 0; i<arr.length; i++){
+            if(arr[i] == toFind){
+               position = i;
+            }
+            loop++;
+        }
+        if(position!= -1) {
+            System.out.println(toFind + " found at position " + position);
+            System.out.println("Linear Search - " + loop + " loop(s)");
+        }else{
+            System.out.println("not found");
+        }
+    }
+    
+    public static void binarySearch(int[] arr, int toFind){
+        int start = 0;
+        int end = arr.length-1;
+        int position = -1;
+        int loop = 0;
+        while(end>=start){
+            int mid = (start + end)/2;
+            if(toFind == arr[mid]){position = mid; loop++;break;}
+            else if (toFind < arr[mid]){ end = mid-1; loop++;System.out.println(end + " " + start);}
+            else if (toFind > arr[mid]){ start = mid+1; loop++;System.out.println(end + " " + start);}
+        }
+        System.out.println(position);
+        if(position!= -1) {
+            System.out.println(toFind + " found at position " + position);
+            System.out.println("Binary Search - " + loop + " loop(s)");
+        }else{
+            System.out.println("not found");
+        }
+    }
+
+        public static void bubbleSortAscending(int[] arr){
+            for(int pass = 0; pass<arr.length; pass++){
+                for(int i = 0; i<arr.length-1-pass; i++){
+                    if(arr[i] > arr[i+1]){
+                        int temp = arr[i];
+                        arr[i] = arr[i+1];
+                        arr[i+1] = temp;
+                    }
+                }
+            }
+        }
+
+    public static void bubbleSortDescending(int[] arr){
+        for(int pass = 0; pass<arr.length; pass++){
+            for(int i = 0; i<arr.length-1-pass; i++){
+                if(arr[i] < arr[i+1]){
+                    int temp = arr[i];
+                    arr[i] = arr[i+1];
+                    arr[i+1] = temp;
+                }
+            }
+        }
+    }
+}
+
+LAB 8 Q 7
+class Money{
+    int RM, cents;
+
+    public Money(int RM, int cents){
+        this.RM = RM;
+        this.cents = cents + RM*100;
+    }
+
+    public void round(){
+        if(this.cents%5 <= 2){
+            this.cents = this.cents - this.cents%5;
+        }else if(this.cents%5 <=7){
+            this.cents = this.cents - this.cents%5 + 5;
+        }else if(this.cents%5 <=9){
+            this.cents = this.cents - this.cents%5 + 10;
+        }
+    }
+
+    public void display(){
+        System.out.printf("RM %d.%d", this.cents/100, this.cents%100);
+    }
+
+    public void addition(int in_cents){
+        this.cents += in_cents;
+    }
+
+    public void subtraction(int out_cents){
+        this.cents -= out_cents;
+    }
+
+
+}
+
+public class Main{
+    public static void main(String[] args){
+        Money money = new Money(10,11);
+        money.round();
+        money.display();
+    }
+}
+
 LAB 9 Q 4 (error getting all 0)
 import java.util.Random;
 
