@@ -222,3 +222,184 @@ while (inputStream.hasNextLine()) {
                 inputStream.nextLine();
             }
             
+            
+---------------------------------
+import java.io.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public class LogProcessor {
+    protected LinkedHashMap<String, Long> Start_time = new LinkedHashMap<>();              //create hashmap
+    protected LinkedHashMap<String, Long> End_time = new LinkedHashMap<>();
+    protected LinkedHashMap<String, Long> Time_difference = new LinkedHashMap<>();
+    protected SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    protected Pattern pattern = Pattern.compile("\\[(?<date>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})\\]");        // regex for date
+    protected Pattern pattern1 = Pattern.compile("Allocate JobId=(\\d+)");                     //regex for allocate resouces #1
+    protected Pattern pattern2 = Pattern.compile("JobId=(\\d+)");                             //regex for JobID
+    protected Pattern pattern3 = Pattern.compile("done");                                     //regex for job completed
+    protected Pattern pattern4 = Pattern.compile("_slurm_rpc_allocate_resources");                // regex for allocate resouces #2// declaring Printwriter object
+
+    public LogProcessor() {                                                              //constructor for empty parameter
+    }
+
+    public LinkedHashMap<String, Long> processLog(String fileName) throws IOException, ParseException {           //constructor for read
+        BufferedReader input = new BufferedReader(new FileReader(fileName));
+        String line;
+        while ((line = input.readLine()) != null) {
+            Matcher q = this.pattern.matcher(line);
+            Matcher w = this.pattern1.matcher(line);
+            Matcher e = this.pattern2.matcher(line);
+            Matcher r = this.pattern3.matcher(line);
+            Matcher z = this.pattern4.matcher(line);
+            if ((q.find() && w.find())) {
+                String date = q.group("date");
+                Date Start_date = this.sdf.parse(date);
+                Long Start_time_1 = Start_date.getTime();
+                String job_ID = w.group(1);
+                Start_time.put(job_ID, Start_time_1);
+            } else if (z.find() && e.find()) {
+                String date = q.group("date");
+                Date Start_date = this.sdf.parse(date);
+                Long Start_time_1 = Start_date.getTime();
+                String job_ID = e.group(1);
+                this.Start_time.put(job_ID, Start_time_1);
+            } else if (e.find() && r.find()) {
+                String date = q.group("date");
+                Date End_date = sdf.parse(date);
+                Long End_time_1 = End_date.getTime();
+                String job_ID = e.group(1);
+                End_time.put(job_ID,End_time_1);
+            }
+        }
+        for (String key : Start_time.keySet()) {
+            if (this.End_time.containsKey(key)) {
+                this.Time_difference.put(key, this.End_time.get(key) - this.Start_time.get(key));
+                System.out.println(this.Time_difference.get(key) +"\t" + key);
+            } else {
+                continue;
+            }
+        }
+        return this.Time_difference;
+    }
+
+    public static void main(String[] args) throws IOException, ParseException {
+        LogProcessor x = new LogProcessor();
+        LinkedHashMap<String, Long> quer = x.processLog("C:/Users/User/Desktop/FOP assignment/extracted_log (1)");
+        for(String key: quer.keySet()){
+            System.out.println(quer.get(key));
+        }
+
+
+        }
+
+
+
+    }
+    -------------------------------------------------
+    import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.sql.SQLOutput;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class timeframe {
+    public LinkedHashMap<String, Date[]> time_Difference = new LinkedHashMap<>();
+    public String start_date;
+
+    Pattern pattern = Pattern.compile("\\[(?<date>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d{3})\\]");
+
+    public SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS");
+    //[2022-06-12T15:59:33.152] sched: Allocate JobId=43532 NodeList=gpu04 #CPUs=12 Partition=gpu-k40c
+    //[2022-06-12T15:59:47.504] _job_complete: JobId=43532 done
+
+    public void DisplayTime() throws IOException, ParseException {
+        Scanner input_1 = new Scanner(System.in);
+        System.out.println("Enter the start date(YYYY-MM-DD): ");               //in the form of YYYY-MM-DD and then need to convert to the format
+        String start_Date = modifydate(input_1.nextLine());
+        System.out.println("Enter the End date(YYYY-MM-DD): ");
+        String end_Date = modifydate(input_1.nextLine());
+        BufferedReader input = new BufferedReader(new FileReader("C:/Users/User/Desktop/Courses/FOP assignment/extracted_log (1)"));
+        String line;
+        while ((line = input.readLine()) != null) {   // read line by line
+            Matcher matcher = pattern.matcher(line);       //regex that match [(?<date>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{3})
+            Date array[] = new Date[2];                    //Date array to store
+            if (line.contains("Allocate JobId") && matcher.find()) { //line that contains that word
+                String[] array_line = line.split(" ");
+                String date = matcher.group("date");    //date in the form of yyyy-MM-dd'T'HH:mm:ss.SSS
+                Date date_up = sdf.parse(date);//convert to Date
+
+
+                if (date_up.after(sdf.parse(start_Date)) && date_up.before(sdf.parse(end_Date))) {
+                    String x = null;
+                    for (int i = 0; i < array_line.length; i++) {
+                        if (array_line[i].contains("JobId=")) {
+                            String[] array_equal = array_line[i].split("=");
+                            x = array_equal[1];
+                        }
+                    }
+                    array[0] = date_up;
+                    time_Difference.put(x, array);
+
+
+                }
+            } if (line.contains("done") && matcher.find()) {
+                String[] array_line = line.split(" ");       //convert and settle date first only can compare range
+                String date = matcher.group("date");
+                Date date_up = sdf.parse(date);
+
+                if (date_up.after(sdf.parse(start_Date)) && date_up.before(sdf.parse(end_Date))) {
+                    String x = null;
+                    for (int i = 0; i < array_line.length; i++) {
+                        if (array_line[i].contains("JobId=")) {
+                            String[] array_equal = array_line[i].split("=");
+                            x = array_equal[1];
+
+                        }
+                    }
+                    if (time_Difference.containsKey(x)) {
+                        time_Difference.get(x)[1] = date_up;
+                    } else {
+                        array[1] = date_up;
+                        time_Difference.put(x, array);
+                    }
+
+
+                }
+
+
+            }
+
+
+        }
+        for(String key : time_Difference.keySet()){
+            System.out.println(key+"\t"+time_Difference.get(key)[0]+"\t"+time_Difference.get(key)[1]);
+        }
+
+        }
+    public String modifydate (String start_date){
+        if (!start_date.contains("T")) {
+            start_date += "T";
+        }if (start_date.length() == 11) {
+            start_date += "00:00:00.000";
+        }
+        return start_date;
+
+    }
+
+    public static void main(String[] args) throws IOException, ParseException {
+        System.out.println("JobID\t\tStart Time Stamp\t\tEnd Time Stamp");
+        timeframe q = new timeframe();
+        q.DisplayTime();
+    }
+
+}
