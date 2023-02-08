@@ -1,0 +1,198 @@
+LAB 9 Q 4 (error getting all 0)
+import java.util.Random;
+
+class DiceGame{
+    String p1name, p2name;
+    int p1score, p2score;
+
+    public DiceGame(String p1name, String p2name){
+        this.p1name = p1name;
+        this.p2name = p2name;
+    }
+
+    static Random random = new Random();
+
+    int dice1, dice2;
+    public void rollDiceGame1(int score){
+        dice1 = random.nextInt(1) + 6;
+        dice2 = random.nextInt(1) + 6;
+        score = score + dice1 + dice2;
+        if (dice1 == dice2) {
+            dice1 = random.nextInt(1) + 6;
+            dice2 = random.nextInt(1) + 6;
+        }
+
+    }
+
+    public void playDiceGame1(){
+        int round = 1;
+        while(p1score<100 && p2score<100) {
+            System.out.println("round "+round);
+            rollDiceGame1(this.p1score);
+            System.out.println(p1name +"'s total score now: " + this.p1score);
+            rollDiceGame1(this.p2score);
+            System.out.println(p2name +"'s total score now: " + this.p2score);
+            round++;
+        }
+        if(p1score>p2score){
+            System.out.println(p1name + " WINS!");
+        }else if(p1score<p2score){
+            System.out.println(p2name + " WINS!");
+        }else{
+            System.out.println("replay");
+        }
+    }
+
+    int diceResult, diceAgain;
+    public int rollDiceGame2(int score){
+        diceResult = random.nextInt(1)+6;
+        score += diceResult;
+        if(diceResult == 6){
+            diceAgain = random.nextInt(1)+6;
+            if(diceAgain!=6){
+                score+=diceAgain;
+            }else if(diceAgain == 6){
+                score -= diceResult;
+            }
+        }
+        return score;
+    }
+
+    public void playDiceGame2(){
+        int round = 1;
+        while(p1score<100 && p2score<100) {
+            System.out.println("round "+round);
+            rollDiceGame2(this.p1score);
+            System.out.println(p1name +"'s total score now: " + p1score);
+            rollDiceGame2(this.p2score);
+            System.out.println(p2name +"'s total score now: " + p2score);
+            round++;
+        }
+        if(p1score>p2score){
+            System.out.println(p1name + " WINS!");
+        }else if(p1score<p2score){
+            System.out.println(p2name + " WINS!");
+        }else{
+            System.out.println("replay");
+        }
+    }
+
+    //1st: roll 2 dices, if both equal, roll again
+    //reaches >=100 wins
+
+    //2nd: roll 1 dices, is 6 role one more time, 6 again no score
+    //reaches =100 wins
+    //scores>100, last score not counted, roll again in next turn
+}
+public class Main{
+    public static void main (String[] args){
+        DiceGame game= new DiceGame("Jarry", "Joanna");
+        game.playDiceGame1();
+        game.playDiceGame2();
+    }
+}
+
+@ L 9 Q 2
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
+import java.util.Scanner;
+
+class PersonProfile{
+    String name;
+    char gender;
+    String DOB;
+
+    public PersonProfile(String n, char g, String dob){
+        this.name = n;
+        this.gender = g;
+        this.DOB = dob;
+    }
+
+    public void display() {
+        System.out.printf("Name: %s \nGender: %c \nDate of Birth: %s", this.name, this.gender, this.DOB);
+    }
+}
+
+class Student extends PersonProfile{
+    String fileName;
+    int countCourse = 0;
+    public Student(String n, char g, String dob, String fileName) {
+        super(n, g, dob);
+        this.fileName = fileName;
+    }
+
+    public void readFile() {
+            try {
+                Scanner sc = new Scanner(new FileInputStream(fileName));
+                while(sc.hasNextLine()) {
+                    sc.nextLine();
+                    countCourse++;
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+    String[] courseCode = new String[countCourse];
+    String[] courseName = new String[countCourse];
+    String[] semester = new String[countCourse];
+    String[] session = new String[countCourse];
+    int[] mark = new int[countCourse];
+    String[] grade = new String[countCourse];
+    int index=0;
+
+        public void store() {
+            try {
+                Scanner sc = new Scanner(new FileInputStream(fileName));
+                while (sc.hasNextLine()) {
+                    this.courseCode[index] = sc.nextLine();
+                    this.courseName[index] = sc.nextLine();
+                    this.semester[index] = sc.nextLine();
+                    this.session[index] = sc.nextLine();
+                    this.mark[index] = sc.nextInt();
+                    sc.nextLine();
+                    index++;
+                }
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
+            System.out.println(Arrays.toString(courseCode));
+        }
+
+            public void getGrade(int[] mark) {
+            for (int i = 0; i<mark.length; i++){
+                if(mark[i]>=85){grade[i] = "A";}
+                else if(mark[i]>=75){grade[i] = "A-";}
+                else if(mark[i]>=70){grade[i] = "B+";}
+                else if(mark[i]>=65){grade[i] = "B";}
+                else if(mark[i]>=60){grade[i] = "B-";}
+                else if(mark[i]>=55){grade[i] = "C+";}
+                else if(mark[i]>=50){grade[i] = "C";}
+                else if(mark[i]>=45){grade[i] = "D";}
+                else if(mark[i]>=35){grade[i] = "E";}
+                else{grade[i] = "F";}
+            }
+    }
+
+    public void displayProfileGrade(){
+        for(int i = 0; i <= index; i++){
+            System.out.println("Course Name: " + this.courseName[i]);
+            System.out.println("Course Code: " + this.courseCode[i]);
+            System.out.println("Semester " + this.semester[i]);
+            System.out.println("Session: " + this.session[i]);
+            System.out.println("Mark: " + this.mark[i]);
+            System.out.println("Grade" + this.grade[i]);
+        }
+    }
+
+}
+
+public class Main{
+    public static void main(String[] args){
+        Student p1 = new Student("Jarry",'M',"2003-03-13", "C:\\Users\\User\\Videos\\course.txt");
+        p1.display();
+        p1.readFile();
+        p1.displayProfileGrade();
+    }
+}
