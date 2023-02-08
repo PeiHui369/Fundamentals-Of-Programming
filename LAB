@@ -1,3 +1,51 @@
+public class Main{
+    public static void main(String[] args){
+        String[] id = {"s12345", "s24567", "s23789", "s14569","s18741"};
+    String[]name = {"Ali", "Beng", "Carmen", "Dinesh", "Emilia"};
+    float[] marks = {77.9F, 33.5F, 98.3F, 40.5F, 22.4F};
+    int[] index ={0,1,2,3,4};
+
+    sortID(id, index);
+    printData(id, name, marks, index);
+
+    }
+
+    public static void printArray(String[] array){
+        for(String data: array){
+            System.out.printf("%-10s", data);
+        }
+        System.out.println();
+    }
+
+    public static void printArray(float[] array){
+        for(float data: array){
+            System.out.printf("%-10.1f", data);
+        }
+        System.out.println();
+    }
+
+    public static void printData(String[] id, String[]name, float[] marks, int[]index){
+        System.out.printf("%-10s %-10s %-10s\n", "Reg No.", "Name", "FOP Marks");
+        System.out.println("+---------------------------------------------------+");
+        for(int iCounter = 0; iCounter < index.length; iCounter++){
+            System.out.printf("%-10s %-10s %-10.1f\n" ,id[index[iCounter]], name[index[iCounter]], marks[index[iCounter]]);
+        }
+    }
+
+    public static void sortID(String[] id, int[]index){
+        int temp;
+        for(int i = 0; i<index.length; i++){
+            for(int j = 0; j<index.length-i-1; j++){
+                if(id[index[j]].compareTo(id[index[j+1]])>0){
+                    temp = index[j];
+                    index[j] = index[j+1];
+                    index[j+1] = temp;
+                }
+            }
+        }
+    }
+}
+===============================
 LAB 4 Q 4
 public class Main{
     public static void main (String[] args){
