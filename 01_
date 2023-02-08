@@ -1,0 +1,224 @@
+super class: private
+subclass: protected
+//Call the method in the constructor, so it directly runs when call in tester class: this.methodName();
+//To call method: object.method();
+
+@ ID
+ do { tempID = (int) Math.round(Math.random() * 89999) + 10000; }    // Generate Temporary ID
+            while (hasFound(tempID, id));                                       // Check if ID is already generated before
+public static boolean hasFound(int thisID, int[] arr) {
+        
+        for (int id: arr) {
+            if (id < 10000) { return false; }
+            if (thisID == id) { return true; }
+        }
+        
+        return false;
+    }
+
+@ time
+inputSec = sc.nextInt;
+hr = inputSec/3600;
+min = (inputSec%3600)/60;
+sec = inputSec%60;
+
+@ calendar
+displayCalendar((d1 + daystoMay) % 7, year, "May", 31);
+ System.out.print(("│     ").repeat(dayinWeek));
+  for (int i = 1; i <= daysinMonth; i++) {
+
+            System.out.printf("│ %s  ", (i < 10) ? "0" + i : i);
+            dayinWeek++;
+
+            if (dayinWeek % 7 == 0) {
+                System.out.print("│\n├─────┼─────┼─────┼─────┼─────┼─────┼─────┤\n");
+                dayinWeek = 0;
+            }
+        }
+
+        System.out.print(("│     ").repeat(7 - dayinWeek) + "│\n└─────┴─────┴─────┴─────┴─────┴─────┴─────┘\n");
+    }
+    
+
+@ leap year
+(year % 400 == 0) || (year % 100 != 0) && (year % 4 == 0);
+
+@ factorial
+public int factorial(int i) {
+        if (i == 0)
+            return 1;
+        return i * factorial(i - 1);
+    }
+
+@ pascal triangle
+Main g = new Main();
+        for (i = 0; i < n; i++) {
+
+            for (j = 0; j <= i; j++) {
+                // nCr formula
+                System.out.print(g.factorial(i) / (g.factorial(i - j) * g.factorial(j)));
+            }
+            for (k = n - 1 - i ; k > 0; k--) {
+                System.out.print(0);
+            }
+            
+            // for newline
+            System.out.println();
+        }
+
+@ generate non duplicate int
+public class T5Q2 {
+    public static void main(String [] args){
+        int [] num = new int [10];
+        boolean[] repeat = new boolean[21];
+
+        for(int i = 0 ; i<=9;i++) {
+            int rand = (int)(Math.random() * 21);
+
+            if(!repeat[rand]) repeat[rand]=true;
+
+            else {
+                do{
+                    rand = (int)(Math.random() * 21);
+
+                }while(repeat[rand]);
+
+                repeat[rand] = true;
+            }
+
+            num[i] = rand;
+        }
+
+        Arrays.sort(num);
+        System.out.println(Arrays.toString(num));
+    }
+
+@
+public class L7Q5 {
+    public static void main(String [] args){
+        String [] nameArr;
+        int [] ageArr;
+        char [] genderArr;
+        int [] indexArr;
+        boolean sortable = true;
+        int num = 0;
+
+        try{
+            ObjectInputStream o = new ObjectInputStream(new FileInputStream("C:\\Users\\user\\IdeaProjects\\Homework\\Lab07\\person.dat"));
+            try{
+                num = o.readInt();
+                nameArr = new String[num];
+                ageArr = new int[num];
+                genderArr = new char[num];
+                indexArr = new int[num];
+
+                for(int i = 0; i<num; i++){
+                    nameArr[i] = o.readUTF();
+                    ageArr[i] = o.readInt();
+                    genderArr[i] = o.readChar();
+                }
+
+                o.close();
+                for(int i = 0; i< indexArr.length; i++){
+                    indexArr[i] = i;
+                }
+
+                while(sortable){
+                    sortable = false;
+
+                    for(int i = 0 ; i< indexArr.length-1; i++){
+                        if(nameArr[indexArr[i]].compareTo(nameArr[indexArr[i+1]]) > 0){
+                            int temp = indexArr[i];
+                            indexArr[i] = indexArr[i+1];
+                            indexArr[i+1] = temp;
+                        }
+                    }
+                }
+
+                for(int i = 0; i< indexArr.length; i++){
+                    System.out.printf("%-20s %-3d %s \n", nameArr[indexArr[i]],ageArr[indexArr[i]],genderArr[indexArr[i]]);
+                }
+            }catch(EOFException e){
+                System.out.println("End of file");
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+}
+
+@ only do if match ID (after store in each arr)
+String [][] productArr = new String[7][4];
+String [][] orderArr = new String [5][3];
+
+for(int i = 0; sc.hasNextLine(); i++){
+                rawStr = sc.nextLine();
+                productArr[i] = rawStr.split(",");
+            }
+            
+for(int i = 0; sc.hasNextLine(); i++){
+                rawStr = sc.nextLine();
+                orderArr[i] = rawStr.split(",");
+            }
+            
+for(int i = 0 ; i<orderArr.length; i++){
+            int linkIndex = getLinkIndex(orderArr[i][1], productArr);
+            if(linkIndex > 0) {
+                double total = Integer.parseInt(orderArr[i][2]) * Double.parseDouble(productArr[linkIndex][2]);
+                System.out.printf("%-10s %-20s %-8s %-8s %8.2f %n", productArr[linkIndex][0], productArr[linkIndex][1], orderArr[i][2], productArr[linkIndex][2], total);
+            }
+        }
+    }
+
+    public static int getLinkIndex(String orderId, String [][] productArr){
+        for(int i = 0; i<productArr.length; i++){
+            if(productArr[i][0].equals(orderId))
+                return i;
+        }
+        return -1;
+    }
+
+@ operate several burger stalls
+String[] stallID;
+    int[] burgersSold;
+    
+    public BurgerStall(String[] stallID){
+        this.stallID = stallID;
+        this.burgersSold = new int[stallID.length];
+    }
+    
+    public void sold(String stallID, int burgersSold){
+        for (int i = 0; i < this.stallID.length; i++) {
+            if (this.stallID[i].equals(stallID)){
+                this.burgersSold[i] += burgersSold;
+                break;
+            }
+        }
+    }
+   
+
+@ count 
+int count = 0;
+        try {
+            Scanner inputStream = new Scanner(new FileInputStream((fileName)));
+            while (inputStream.hasNextLine()) {
+                for (int i = 0; i < 5; i++) {
+                    inputStream.nextLine();
+                }
+                count++;
+            }
+            inputStream.close();
+            
+@ array to store values
+while (inputStream.hasNextLine()) {
+                //list of array to store val
+                if (!inputStream.hasNextLine()) {
+                    break;
+                }
+                i++;
+                inputStream.nextLine();
+            }
+            
